@@ -43,5 +43,9 @@ for i,a in enumerate(mat_2):
 
 pyplot.scatter(customer_x,customer_y)
 pyplot.plot(truck_x,truck_y,color="red")
-pyplot.scatter(truck_x,truck_y,color="red")
+for i,a in enumerate(truck_x):
+    if i==0 or i==len(truck_x)-1:
+        pyplot.scatter(truck_x[i],truck_y[i],marker='s',color="black")
+    else:
+        pyplot.scatter(truck_x[i],truck_y[i],color="red")
 pyplot.show()

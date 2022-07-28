@@ -32,6 +32,21 @@ int Q;//停止ポイント数 0は始点デポ Qは終点デポ
 vector<Point>C;
 vector<Point>Stop_Point;
 
+int swap_Stop_Point_dist(int a,int b){
+    int d1=sqrt((Stop_Point[a-1].x-Stop_Point[a].x)*(Stop_Point[a-1].x-Stop_Point[a].x)+(Stop_Point[a-1].y-Stop_Point[a].y)*(Stop_Point[a-1].y-Stop_Point[a].y));
+    int d2=sqrt((Stop_Point[a+1].x-Stop_Point[a].x)*(Stop_Point[a+1].x-Stop_Point[a].x)+(Stop_Point[a+1].y-Stop_Point[a].y)*(Stop_Point[a+1].y-Stop_Point[a].y));
+    int d3=sqrt((Stop_Point[b-1].x-Stop_Point[b].x)*(Stop_Point[b-1].x-Stop_Point[b].x)+(Stop_Point[b-1].y-Stop_Point[b].y)*(Stop_Point[b-1].y-Stop_Point[b].y));
+    int d4=sqrt((Stop_Point[b+1].x-Stop_Point[b].x)*(Stop_Point[b+1].x-Stop_Point[b].x)+(Stop_Point[b+1].y-Stop_Point[b].y)*(Stop_Point[b+1].y-Stop_Point[b].y));
+
+    int d5=sqrt((Stop_Point[b-1].x-Stop_Point[a].x)*(Stop_Point[b-1].x-Stop_Point[a].x)+(Stop_Point[b-1].y-Stop_Point[a].y)*(Stop_Point[b-1].y-Stop_Point[a].y));
+    int d6=sqrt((Stop_Point[b+1].x-Stop_Point[a].x)*(Stop_Point[b+1].x-Stop_Point[a].x)+(Stop_Point[b+1].y-Stop_Point[a].y)*(Stop_Point[b+1].y-Stop_Point[a].y));
+    int d7=sqrt((Stop_Point[a-1].x-Stop_Point[b].x)*(Stop_Point[a-1].x-Stop_Point[b].x)+(Stop_Point[a-1].y-Stop_Point[b].y)*(Stop_Point[a-1].y-Stop_Point[b].y));
+    int d8=sqrt((Stop_Point[a+1].x-Stop_Point[b].x)*(Stop_Point[a+1].x-Stop_Point[b].x)+(Stop_Point[a+1].y-Stop_Point[b].y)*(Stop_Point[a+1].y-Stop_Point[b].y));
+
+    int c=d1+d2+d3+d4,d=d5+d6+d7+d8;
+    if(c>d) return 1;
+    return 0;
+}
 
 void input(){
     ifstream input_file("instance_1.txt");
@@ -50,7 +65,7 @@ void input(){
     input_file.close();
 }
 
-void truck_root_decide()
+void truck_root_decide()//truckのルート決定
 {
     vector<vector<int>>dist(Q,vector<int>(Q));
     rep(i,Q){
@@ -59,6 +74,7 @@ void truck_root_decide()
             else dist[i][j]=ceil(sqrt((Stop_Point[i].x-Stop_Point[j].x)*(Stop_Point[i].x-Stop_Point[j].x)+(Stop_Point[i].y-Stop_Point[j].y)*(Stop_Point[i].y-Stop_Point[j].y)));
         }
     }
+    //----------------Stop_Pointを(0,0)からNN法-------------------
     vector<bool>check(Q,false);
     check[0]=true;
     check[Q-1]=true;
@@ -79,13 +95,32 @@ void truck_root_decide()
         count++;
     }
     root.push_back(Q-1);
+    vector<Point> new_Stop_Point(Q);
     rep(i,Q){
-        cout<<Stop_Point[root[i]].x<<" "<<Stop_Point[root[i]].y<<endl;
+        new_Stop_Point[i]=Stop_Point[root[i]];
     }
-
+    rep(i,Q) Stop_Point[i]=new_Stop_Point[i];
+    /*rep(i,Q){
+        cout<<Stop_Point[i].x<<" "<<Stop_Point[i].y<<endl;
+    }*/
+//---------------------------swap近傍--------------------------------------
+    count=0;
+    while(count<3){
+        for(int i=1;i<Q-1;i++){
+            for(int j=1;j<Q-1;j++){
+                if(i!=j){
+                    if(swap_Stop_Point_dist(i,j)==1) {
+                        swap(Stop_Point[i],Stop_Point[j]);
+                    }
+                }
+            }
+        }
+        count++;
+    }
+//--------------
     ofstream outputfile("truck_root_1.txt");
     rep(i,Q){
-        outputfile<<Stop_Point[root[i]].x<<" "<<Stop_Point[root[i]].y<<endl;
+        outputfile<<Stop_Point[i].x<<" "<<Stop_Point[i].y<<endl;
     }
     outputfile.close();
 }
