@@ -40,12 +40,43 @@ for i,a in enumerate(mat_2):
         else:
             customer_y.append(v)
 
+mat3=[]
+with open('answer_1.txt') as fin:
+    for line in fin.readlines():
+        row = []
+        toks = line.split(' ')
+        for tok in toks:
+            num = int(tok)
+            row.append(num)
+        mat3.append(row)    
 
 pyplot.scatter(customer_x,customer_y)
-pyplot.plot(truck_x,truck_y,color="red")
+pyplot.plot(truck_x,truck_y,color="black",linewidth=2)
 for i,a in enumerate(truck_x):
     if i==0 or i==len(truck_x)-1:
         pyplot.scatter(truck_x[i],truck_y[i],marker='s',color="black")
     else:
-        pyplot.scatter(truck_x[i],truck_y[i],color="red")
+        pyplot.scatter(truck_x[i],truck_y[i],color="red",linewidth=3)
+ii=0
+jj=1
+for i,a in enumerate(mat3):
+    for k,v in enumerate(a):
+        if v==-1:
+            ii=ii+1
+        else:
+            tx=truck_x[jj]
+            ty=truck_y[jj]
+            cx=customer_x[v]
+            cy=customer_y[v]
+            if ii==0:
+                pyplot.plot([tx,cx],[ty,cy],color="green")
+            if ii==1:
+                pyplot.plot([tx,cx],[ty,cy],color="yellow")
+            if ii==2:
+                pyplot.plot([tx,cx],[ty,cy],color="cyan")
+
+        if ii==3:
+            ii=0
+            jj=jj+1
+
 pyplot.show()

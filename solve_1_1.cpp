@@ -29,9 +29,15 @@ using T=tuple<int,int,char,ll,string>;
 
 double pc=0.6;//probability of crossover
 double pm=0.01;//probability of mutation
+int c_pc=0;
+int c_pm=0;
+int best_score=1e9;
+
 struct Point{
     int x,y;
 };
+
+int m_x,m_y,m_z,move_place;
 
 Point C[N];
 Point Stop_Point[Q];
@@ -39,6 +45,7 @@ int w[N][Q];
 vector<vector<int>>first_solution_where_todeliver(Q);
 vector<vector<vector<int>>>X(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
 vector<vector<vector<int>>>Answer(POP,vector<vector<int>>(Q));//P[POP][Q]:Package delivered at point Q answer POP
+vector<vector<int>>best_Answer(Q);
 
 int score[POP]={0};//P[POP] score
 
@@ -235,17 +242,7 @@ void decide_drone_todeliver_by_LPT_and_score(vector<vector<int>>A,int number)
 void solve_GA()
 {
     int count=0;
-    while(count<1){
-        int min_index=-1,min_score=1e9;
-        rep(i,POP){
-            decide_drone_todeliver_by_LPT_and_score(Answer[i],i);
-            if(min_score>score[i]){
-                min_score=score[i];
-                min_index=i;
-            }
-            //cout<<score[i]<<endl;
-        }
-
+    while(count<G){
         vector<vector<vector<int>>>next_Answer(POP,vector<vector<int>>(Q));//P[POP][Q]:Package delivered at point Q answer POP
         int num_answer=0;
         while(num_answer<POP){
@@ -278,10 +275,10 @@ void solve_GA()
                 }
             }
             double r=(double)rand()/RAND_MAX;
-            r=pc;//---------------------------------------------------------------------------
-            cout<<r<<endl;
+            //cout<<r<<endl;
             if(r<=pc) {
-                cout<<"pc"<<endl;
+                //cout<<"pc"<<endl;
+                c_pc++;
                 //---------------------------debug--------------
                 /*for(int i=1;i<Q-1;i++){
                     cout<<"[";
@@ -434,9 +431,106 @@ void solve_GA()
             }
 
             //--------------------------------------------------------------------
-            else if(pc<r&&r<=pc+pm) cout<<"pm"<<endl;
-            else cout<<"copy"<<endl;
+            else if(pc<r&&r<=pc+pm){
+                //cout<<"pm"<<endl;
+                c_pm++;
+                m_x=rand()%(Q-2)+1;
+                //cout<<"m_x"<<m_x<<endl;
+                if(P1[m_x].size()!=0){
+                    m_y=rand()%P1[m_x].size();
+                    //cout<<"m_y"<<m_y<<endl;
+                    move_place=P1[m_x][m_y];
+                    P1[m_x][m_y]=-1;
+                   // cout<<"move"<<move_place<<endl;
+                    m_z=rand()%(Q-2)+1;
+                    //cout<<"m_z"<<m_z<<endl;
+                    P1[m_z].push_back(move_place);
+                }
+
+                m_x=rand()%(Q-2)+1;
+                //cout<<"m_x"<<m_x<<endl;
+                if(P2[m_x].size()!=0){
+                    m_y=rand()%P2[m_x].size();
+                    //cout<<"m_y"<<m_y<<endl;
+                    move_place=P2[m_x][m_y];
+                    P2[m_x][m_y]=-1;
+                   // cout<<"move"<<move_place<<endl;
+                    m_z=rand()%(Q-2)+1;
+                    //cout<<"m_z"<<m_z<<endl;
+                    P2[m_z].push_back(move_place);
+                }
+
+                for(int i=1;i<Q-1;i++){
+                    rep(j,P1[i].size()){
+                        if(P1[i][j]!=-1) O1[i].push_back(P1[i][j]);
+                    }
+                }
+
+                for(int i=1;i<Q-1;i++){
+                    rep(j,P2[i].size()){
+                        if(P2[i][j]!=-1) O2[i].push_back(P2[i][j]);
+                    }
+                }
+            }
+            //-------------------------------------------------
+            else {
+                //cout<<"copy"<<endl;
+                for(int i=1;i<Q-1;i++){
+                    rep(j,P1[i].size()){
+                        if(P1[i][j]!=-1) O1[i].push_back(P1[i][j]);
+                    }
+                }
+
+                for(int i=1;i<Q-1;i++){
+                    rep(j,P2[i].size()){
+                        if(P2[i][j]!=-1) O2[i].push_back(P2[i][j]);
+                    }
+                }
+  
+            }
+            //---------------------------------------------
+            for(int i=1;i<Q-1;i++){
+                rep(j,O1[i].size()){
+                    next_Answer[num_answer][i].push_back(O1[i][j]);
+                }
+            }
+            for(int i=1;i<Q-1;i++){
+                rep(j,O2[i].size()){
+                    next_Answer[num_answer+1][i].push_back(O2[i][j]);
+                }
+            }
+
             num_answer=num_answer+2;
+        }
+
+        rep(i,POP){
+            //cout<<i<<endl;
+            for(int j=1;j<Q-1;j++){
+                Answer[i][j].clear();
+                rep(h,next_Answer[i][j].size()){
+                    Answer[i][j].push_back(next_Answer[i][j][h]);
+                }
+            }
+        }
+        int min_index=-1,min_score=1e9;
+        rep(i,POP){
+            decide_drone_todeliver_by_LPT_and_score(Answer[i],i);
+            if(min_score>score[i]){
+                min_score=score[i];
+                min_index=i;
+            }
+            //cout<<score[i]<<endl;
+        }
+        cout<<score[min_index]<<endl;
+
+        if(best_score>score[min_index]){
+            best_score=score[min_index];
+            for(int i=1;i<Q-1;i++){
+                best_Answer[i].clear();
+                rep(j,Answer[min_index][i].size()){
+                    best_Answer[i].push_back(Answer[min_index][i][j]);
+                }
+            }
         }
         count++;
     }
@@ -471,6 +565,37 @@ void last_decide_drone_todeliver_by_LPT_and_score(vector<vector<int>>A,int numbe
         cout<<endl;
     }
 }
+
+void real_last_decide_drone_todeliver_by_LPT_and_score(vector<vector<int>>A)
+{
+    vector<vector<vector<int>>>x(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
+    for(int i=1;i<Q-1;i++){
+        int time[K]={0};
+        rep(j,A[i].size()){
+            int min_processing_drone=-1,min_processing_time=1e9;
+            rep(k,K){
+                if(time[k]<min_processing_time){
+                    min_processing_drone=k;
+                    min_processing_time=time[k];
+                }
+            }
+            x[min_processing_drone][i].push_back(A[i][j]);
+            time[min_processing_drone]+=w[A[i][j]][i];
+        }
+        cout<<"Stop Point "<<i<<endl;
+        rep(j,K){
+            cout<<"drone "<<j<<":";
+            rep(k,x[j][i].size()){
+                cout<<x[j][i][k]<<" ";
+                X[j][i].push_back(x[j][i][k]);//----------------------------
+            }
+            X[j][i].push_back(-1);//-------------------finish = -1
+            cout<<"cost:"<<time[j]<<endl;
+        }
+        cout<<endl;
+    }
+}
+
 
 void output_customer_place()
 {
@@ -509,11 +634,14 @@ int main()
             min_answer=score[i];
             min_index=i;
         }
-        //cout<<score[i]<<endl;
     }
+    cout<<score[min_index]<<endl;
     solve_GA();
-    last_decide_drone_todeliver_by_LPT_and_score(Answer[min_index],min_index);
-    cout<<"score : "<<score[min_index]<<" : "<<min_index<<endl;
+    cout<<"num of pc:"<<c_pc<<endl;
+    cout<<"num of pm:"<<c_pm<<endl;  
+    cout<<"finish"<<endl;
+    real_last_decide_drone_todeliver_by_LPT_and_score(best_Answer);
+    cout<<"score : "<<best_score<<endl;
     output_customer_place();
     output_answer(X);
 }
