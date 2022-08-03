@@ -31,7 +31,7 @@ struct Point
 int main()
 {
     srand((unsigned int)time(NULL));
-    Point C[N],K[Q+2];//C:ŒÚ‹qÀ•W  K:ƒgƒ‰ƒbƒN’â~À•W(K[0]‚Ín“_ƒfƒ|,K[Q+1]‚ÍI“_ƒfƒ|)
+    Point C[N],K[Q+2];//C:ï¿½Ú‹qï¿½ï¿½ï¿½W  K:ï¿½gï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½~ï¿½ï¿½ï¿½W(K[0]ï¿½Ínï¿½_ï¿½fï¿½|,K[Q+1]ï¿½ÍIï¿½_ï¿½fï¿½|)
     bool check[50][50]={0};
     int count=0;
     while(count<N){
@@ -41,6 +41,7 @@ int main()
         C[count].x=x;
         C[count].y=y;
         if(check[x][y]==false){
+            check[x][y]=true;
             count++;
         }
     }
@@ -55,24 +56,23 @@ int main()
         K[count].x=x;
         K[count].y=y;
         if(check[x][y]==false){
+            check[x][y]=true;
             count++;
         }
     }
-    cout<<"ŒÚ‹qÀ•W"<<endl;
+    cout<<"ï¿½Ú‹qï¿½ï¿½ï¿½W"<<endl;
     rep(i,N){
        printf("%3d : %3d\n",C[i].x,C[i].y);
     }
-    cout<<"’â~ƒ|ƒCƒ“ƒgÀ•W"<<endl;
+    cout<<"ï¿½ï¿½~ï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½ï¿½W"<<endl;
     rep(i,Q+2){
        printf("%3d : %3d\n",K[i].x,K[i].y);       
     }
-    //--o—Í-----------------------
+    //--ï¿½oï¿½ï¿½-----------------------
     ofstream outputfile("instance_1.txt");
-    outputfile<<N<<endl;
     rep(i,N){
         outputfile<<C[i].x<<","<<C[i].y<<endl;
     }
-    outputfile<<Q+2<<endl;
     rep(i,Q+2){
         outputfile<<K[i].x<<","<<K[i].y<<endl;
     }
