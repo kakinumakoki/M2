@@ -7,7 +7,7 @@ customer_x=[]
 customer_y=[]
 
 mat_1=[]
-with open('truck_root_2.txt', 'r') as fin:  
+with open('truck_root_1.txt', 'r') as fin:  
     for line in fin.readlines():  
         row = []  
         toks = line.split(' ')  
@@ -24,7 +24,7 @@ for i,a in enumerate(mat_1):
             truck_y.append(v)
 
 mat_2=[]
-with open('customer_place_2.txt', 'r') as fin:  
+with open('customer_place_1.txt', 'r') as fin:  
     for line in fin.readlines():  
         row = []  
         toks = line.split(' ')  
@@ -41,7 +41,7 @@ for i,a in enumerate(mat_2):
             customer_y.append(v)
 
 mat3=[]
-with open('answer_2.txt') as fin:
+with open('answer_1.txt') as fin:
     for line in fin.readlines():
         row = []
         toks = line.split(' ')

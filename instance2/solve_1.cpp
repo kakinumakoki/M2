@@ -50,7 +50,7 @@ vector<vector<int>>best_Answer(Q);
 int score[POP]={0};//P[POP] score
 
 void input(){
-    ifstream input_file("instance_2.txt");
+    ifstream input_file("instance_1.txt");
     rep(i,N){
         char a;
         input_file>>C[i].x>>a>>C[i].y;
@@ -153,7 +153,7 @@ void truck_root_decide()//truck
         count++;
     }
 //--------------
-    ofstream outputfile("truck_root_2.txt");
+    ofstream outputfile("truck_root_1.txt");
     rep(i,Q){
         outputfile<<Stop_Point[i].x<<" "<<Stop_Point[i].y<<endl;
     }
@@ -599,7 +599,7 @@ void real_last_decide_drone_todeliver_by_LPT_and_score(vector<vector<int>>A)
 
 void output_customer_place()
 {
-    ofstream outputfile("customer_place_2.txt");
+    ofstream outputfile("customer_place_1.txt");
     rep(i,N){
         outputfile<<C[i].x<<" "<<C[i].y<<endl;
     }
@@ -608,7 +608,7 @@ void output_customer_place()
 
 void output_answer(vector<vector<vector<int>>>x)
 {
-    ofstream outputfile("answer_2.txt");
+    ofstream outputfile("answer_1.txt");
     for(int i=1;i<Q-1;i++){
         rep(j,K){
             rep(k,x[j][i].size()){
