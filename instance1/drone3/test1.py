@@ -41,7 +41,7 @@ for i,a in enumerate(mat_2):
             customer_y.append(v)
 
 mat3=[]
-with open('answer_2.txt') as fin:
+with open('answer_1.txt') as fin:
     for line in fin.readlines():
         row = []
         toks = line.split(' ')
@@ -78,6 +78,7 @@ for i,a in enumerate(mat3):
         if ii==3:
             ii=0
             jj=jj+1
+
 pyplot.plot([],[],label="drone1",color="green")
 pyplot.plot([],[],label="drone2",color="yellow")
 pyplot.plot([],[],label="drone3",color="cyan")
@@ -85,6 +86,7 @@ pyplot.plot([],[],label="truck root",color="black")
 pyplot.scatter([],[],marker="o",color="red",label="Stop Point")
 pyplot.scatter([],[],marker="o",color="blue",label="Customer")
 pyplot.scatter([],[],marker="s",color="black",label="Depo")
+
 pyplot.legend(loc='upper left',bbox_to_anchor=(1,1))
 
 pyplot.show()

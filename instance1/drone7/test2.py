@@ -74,17 +74,32 @@ for i,a in enumerate(mat3):
                 pyplot.plot([tx,cx],[ty,cy],color="yellow")
             if ii==2:
                 pyplot.plot([tx,cx],[ty,cy],color="cyan")
+            if ii==3:
+                pyplot.plot([tx,cx],[ty,cy],color="red")
+            if ii==4:
+                pyplot.plot([tx,cx],[ty,cy],color="magenta")
+            if ii==5:
+                pyplot.plot([tx,cx],[ty,cy],color="grey")
+            if ii==6:
+                pyplot.plot([tx,cx],[ty,cy],color="pink")
 
-        if ii==3:
+        if ii==7:
             ii=0
             jj=jj+1
+
 pyplot.plot([],[],label="drone1",color="green")
 pyplot.plot([],[],label="drone2",color="yellow")
 pyplot.plot([],[],label="drone3",color="cyan")
+pyplot.plot([],[],label="drone4",color="red")
+pyplot.plot([],[],label="drone5",color="magenta")
+pyplot.plot([],[],label="drone6",color="grey")
+pyplot.plot([],[],label="drone7",color="pink")
+
 pyplot.plot([],[],label="truck root",color="black")
 pyplot.scatter([],[],marker="o",color="red",label="Stop Point")
 pyplot.scatter([],[],marker="o",color="blue",label="Customer")
 pyplot.scatter([],[],marker="s",color="black",label="Depo")
+
 pyplot.legend(loc='upper left',bbox_to_anchor=(1,1))
 
 pyplot.show()

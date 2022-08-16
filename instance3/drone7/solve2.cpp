@@ -22,7 +22,7 @@ using T=tuple<int,int,char,ll,string>;
 #define max_x_y 50
 #define N 50//num of customer
 #define Q 12//num of StopPoint
-#define K 3//num of drone
+#define K 7//num of drone
 
 int best_score=1e9;
 
@@ -39,7 +39,7 @@ long start,finish;
 double limit_time=3.0;
 
 void input(){
-    ifstream input_file("instance_1.txt");
+    ifstream input_file("instance.txt");
     rep(i,N){
         char a;
         input_file>>C[i].x>>a>>C[i].y;
@@ -219,6 +219,7 @@ void cal_score(vector<vector<int>>A){
         //cout<<max_score<<endl;
         sum+=max_score;
     }
+    //cout<<sum<<endl;
     if(best_score>sum) {
         best_score=sum;
         cout<<sum<<endl;
@@ -236,7 +237,7 @@ void output_customer_place()
 
 void output_answer(vector<vector<vector<int>>>x)
 {
-    ofstream outputfile("answer_1_2.txt");
+    ofstream outputfile("answer_2.txt");
     for(int i=1;i<Q-1;i++){
         rep(j,K){
             rep(k,x[j][i].size()){
