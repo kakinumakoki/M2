@@ -19,7 +19,7 @@ using P=pair<int,int>;
 using P_S=pair<int,string>;
 using P_D=pair<double,int>;
 using T=tuple<int,int,char,ll,string>;
-#define max_x_y 50
+#define max_x_y 1400
 #define N 50//num of customer
 #define Q 12//num of StopPoint
 #define K 7//num of drone

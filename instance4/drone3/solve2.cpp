@@ -186,17 +186,21 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
             x[min_processing_drone][i].push_back(A[i][j]);
             time[min_processing_drone]+=w[A[i][j]][i];
         }
-
+        cout<<"Stop Point "<<i<<endl;
         rep(j,K){
+            cout<<"drone "<<j<<":";
             rep(k,x[j][i].size()){
+                cout<<x[j][i][k]<<" ";
                 X[j][i].push_back(x[j][i][k]);//----------------------------
             }
             X[j][i].push_back(-1);//-------------------finish = -1
+            cout<<"cost:"<<time[j]<<endl;
         }
+        cout<<endl;
     }
 }
 
-void cal_score(vector<vector<int>>A){
+int cal_score(vector<vector<int>>A){
     vector<vector<vector<int>>>x(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
     int sum=0;
     for(int i=1;i<Q-1;i++){
@@ -220,10 +224,75 @@ void cal_score(vector<vector<int>>A){
         sum+=max_score;
     }
     //cout<<sum<<endl;
-    if(best_score>sum) {
-        best_score=sum;
-        cout<<sum<<endl;
-    }
+    return sum;
+}
+
+void insert(vector<vector<int>>A)
+{
+        vector<vector<int>>copy_answer(Q);
+        for(int i=1;i<Q-1;i++){
+            rep(j,A[i].size()){
+                copy_answer[i].push_back(A[i][j]);
+            }
+        }
+        int x=rand()%(Q-2)+1;
+        if(copy_answer[x].size()!=0){
+            int y=rand()%copy_answer[x].size();
+            int z;
+            while(1){
+                z=rand()%(Q-2)+1;
+                if(z!=x) break;
+            }
+            copy_answer[z].push_back(copy_answer[x][y]);
+        }
+        int copy_score=cal_score(copy_answer); 
+        if(copy_score<best_score){
+            cout<<"update"<<endl;
+            rep(i,Q){
+                first_solution_where_todeliver[i].clear();
+                rep(j,copy_answer[i].size()){
+                    first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
+                }
+            }
+        }
+}
+
+void swap_search(vector<vector<int>>A)
+{
+        vector<vector<int>>copy_answer(Q);
+        for(int i=1;i<Q-1;i++){
+            rep(j,A[i].size()){
+                copy_answer[i].push_back(A[i][j]);
+            }
+        }
+        int x,y;
+        while(1){
+            x=rand()%(Q-2)+1;
+            if(copy_answer[x].size()!=0){
+                y=rand()%copy_answer[x].size();
+                break;
+            }
+        }
+        int z,w;
+        while(1){
+            z=rand()%(Q-2)+1;
+            if(copy_answer[z].size()!=0){
+                w=rand()%copy_answer[z].size();
+                break;
+            }
+        }       
+        swap(copy_answer[x][y],copy_answer[z][w]);
+        int copy_score=cal_score(copy_answer); 
+        if(copy_score<best_score){
+            best_score=copy_score;
+            cout<<copy_score<<endl;
+            rep(i,Q){
+                first_solution_where_todeliver[i].clear();
+                rep(j,copy_answer[i].size()){
+                    first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
+                }
+            }
+        }
 }
 
 void output_customer_place()
@@ -256,39 +325,14 @@ int main()
     truck_root_decide();
     cal_dist_customer_StopPoint();
     decide_todeliver_near();
-    cal_score(first_solution_where_todeliver);
-
+    best_score=cal_score(first_solution_where_todeliver);
+    cout<<best_score<<endl;
     start=clock();
     while((double)(finish-start)/CLOCKS_PER_SEC<limit_time){
-        vector<vector<int>>copy_answer(Q);
-        for(int i=1;i<Q-1;i++){
-            rep(j,first_solution_where_todeliver[i].size()){
-                copy_answer[i].push_back(first_solution_where_todeliver[i][j]);
-            }
-        }
-        int x=rand()%(Q-2)+1;
-        if(copy_answer[x].size()!=0){
-            int y=rand()%copy_answer[x].size();
-            int z;
-            while(1){
-                z=rand()%(Q-2)+1;
-                if(z!=x) break;
-            }
-            copy_answer[z].push_back(copy_answer[x][y]);
-        }
-        int pre_score=best_score;
-        cal_score(copy_answer); 
-        if(pre_score>best_score){
-            cout<<"update"<<endl;
-            rep(i,Q){
-                first_solution_where_todeliver[i].clear();
-                rep(j,copy_answer[i].size()){
-                    first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
-                }
-            }
-        }
+        swap_search(first_solution_where_todeliver);
         finish=clock();
     }
+    cout<<best_score<<endl;
     decide_drone_todeliver_by_LPT(first_solution_where_todeliver);
     output_customer_place();
     output_answer(X);

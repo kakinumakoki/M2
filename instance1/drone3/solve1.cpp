@@ -50,7 +50,7 @@ vector<vector<int>>best_Answer(Q);
 int score[POP]={0};//P[POP] score
 
 void input(){
-    ifstream input_file("instance_1.txt");
+    ifstream input_file("instance.txt");
     rep(i,N){
         char a;
         input_file>>C[i].x>>a>>C[i].y;
