@@ -19,10 +19,10 @@ using P=pair<int,int>;
 using P_S=pair<int,string>;
 using P_D=pair<double,int>;
 using T=tuple<int,int,char,ll,string>;
-#define max_x_y 50
-#define N 50//num of customer
+#define max_x_y 1000
+#define N 100//num of customer
 #define Q 12//num of StopPoint
-#define K 3//num of drone
+#define K 4//num of drone
 
 int best_score=1e9;
 
@@ -35,7 +35,7 @@ Point Stop_Point[Q];
 int w[N][Q];
 vector<vector<int>>first_solution_where_todeliver(Q);
 vector<vector<vector<int>>>X(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
-long start,finish;
+long start,finish,time_start,time_finish;
 double limit_time=3.0;
 
 void input(){
@@ -175,6 +175,11 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
     vector<vector<vector<int>>>x(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
     for(int i=1;i<Q-1;i++){
         int time[K]={0};
+        vector<P>B;
+        rep(j,A[i].size()){
+            B.push_back({w[A[i][j]][i],A[i][j]});
+        }
+        sort(B.rbegin(),B.rend());
         rep(j,A[i].size()){
             int min_processing_drone=-1,min_processing_time=1e9;
             rep(k,K){
@@ -183,8 +188,8 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
                     min_processing_time=time[k];
                 }
             }
-            x[min_processing_drone][i].push_back(A[i][j]);
-            time[min_processing_drone]+=w[A[i][j]][i];
+            x[min_processing_drone][i].push_back(B[j].second);
+            time[min_processing_drone]+=w[B[j].second][i];
         }
         cout<<"Stop Point "<<i<<endl;
         rep(j,K){
@@ -205,6 +210,11 @@ int cal_score(vector<vector<int>>A){
     int sum=0;
     for(int i=1;i<Q-1;i++){
         int time[K]={0};
+        vector<P>B;
+        rep(j,A[i].size()){
+            B.push_back({w[A[i][j]][i],A[i][j]});
+        }
+        sort(B.rbegin(),B.rend());
         rep(j,A[i].size()){
             int min_processing_drone=-1,min_processing_time=1e9;
             rep(k,K){
@@ -213,8 +223,8 @@ int cal_score(vector<vector<int>>A){
                     min_processing_time=time[k];
                 }
             }
-            x[min_processing_drone][i].push_back(A[i][j]);
-            time[min_processing_drone]+=w[A[i][j]][i];
+            x[min_processing_drone][i].push_back(B[j].second);
+            time[min_processing_drone]+=w[B[j].second][i];
         }
         int max_score=0;
         rep(j,K){
@@ -322,6 +332,7 @@ int main()
 {
     srand((unsigned int)time(NULL));
     input();
+    time_start=clock();
     truck_root_decide();
     cal_dist_customer_StopPoint();
     decide_todeliver_near();
@@ -332,8 +343,10 @@ int main()
         swap_search(first_solution_where_todeliver);
         finish=clock();
     }
-    cout<<best_score<<endl;
+    time_finish=clock();
     decide_drone_todeliver_by_LPT(first_solution_where_todeliver);
+    cout<<"score : "<<best_score<<endl;
+    cout<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC<<endl;
     output_customer_place();
     output_answer(X);
 }

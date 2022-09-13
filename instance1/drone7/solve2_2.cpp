@@ -175,6 +175,11 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
     vector<vector<vector<int>>>x(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
     for(int i=1;i<Q-1;i++){
         int time[K]={0};
+        vector<P>B;
+        rep(j,A[i].size()){
+            B.push_back({w[A[i][j]][i],A[i][j]});
+        }
+        sort(B.rbegin(),B.rend());
         rep(j,A[i].size()){
             int min_processing_drone=-1,min_processing_time=1e9;
             rep(k,K){
@@ -183,8 +188,8 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
                     min_processing_time=time[k];
                 }
             }
-            x[min_processing_drone][i].push_back(A[i][j]);
-            time[min_processing_drone]+=w[A[i][j]][i];
+            x[min_processing_drone][i].push_back(B[j].second);
+            time[min_processing_drone]+=w[B[j].second][i];
         }
         cout<<"Stop Point "<<i<<endl;
         rep(j,K){
