@@ -21,7 +21,7 @@ using P_D=pair<double,int>;
 using T=tuple<int,int,char,ll,string>;
 #define N 100
 #define Q 10
-#define max_x_y 1000
+#define max_x_y 50
 
 struct Point
 {
