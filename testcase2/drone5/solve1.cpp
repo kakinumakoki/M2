@@ -635,6 +635,35 @@ void output_answer(vector<vector<vector<int>>>x)
         }
     }
 }
+void output_txt()
+{
+    ofstream outputfile("result_1.txt");
+    for(int i=1;i<Q-1;i++){
+        outputfile<<"Stop Point "<<i<<endl;
+        rep(j,K){
+            int cost=0,em=15;
+            vector<int>a;
+            outputfile<<"drone "<<j+1<<" : ";
+            rep(k,X[j][i].size()-1){
+                em-=3;
+                if(X[j][i][k]<10) em++;
+                cost+=w[X[j][i][k]][i];
+                a.push_back(w[X[j][i][k]][i]);
+                outputfile<<" "<<X[j][i][k];
+            }
+            rep(k,em) outputfile<<" ";
+            outputfile<<"cost : ";
+            rep(k,a.size()) {
+                if(k==a.size()-1) outputfile<<a[k]<<"=";
+                else outputfile<<a[k]<<"+";
+            }
+            outputfile<<cost<<endl;
+        }
+        outputfile<<endl;
+    }
+    outputfile<<"best score : "<<best_score<<endl;
+    outputfile<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC;
+}
 
 int main()
 {
@@ -661,6 +690,7 @@ int main()
     real_last_decide_drone_todeliver_by_LPT_and_score(best_Answer);
     cout<<"score : "<<best_score<<endl;
     cout<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC<<endl;
+    output_txt();
     output_customer_place();
     output_answer(X);
 }
