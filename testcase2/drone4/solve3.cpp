@@ -20,9 +20,9 @@ using P_S=pair<int,string>;
 using P_D=pair<double,int>;
 using T=tuple<int,int,char,ll,string>;
 #define max_x_y 50
-#define N 50//num of customer
+#define N 100//num of customer
 #define Q 12//num of StopPoint
-#define K 3//num of drone
+#define K 4//num of drone
 
 int best_score=1e9;
 double start_temp=20;
@@ -38,8 +38,8 @@ Point Stop_Point[Q];
 int w[N][Q];
 vector<vector<int>>first_solution_where_todeliver(Q);
 vector<vector<vector<int>>>X(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
-long start,finish;
-double limit_time=10;
+long time_start,time_finish;
+double limit_time=5;
 
 void input(){
     ifstream input_file("instance.txt");
@@ -230,27 +230,29 @@ int cal_score(vector<vector<int>>A){
     return sum;
 }
 
-void insert(vector<vector<int>>A)
+void insert_search(vector<vector<int>>A)
 {
+        int x;
+        while(1){
+            x=rand()%(Q-2)+1;
+            if(A[x].size()!=0) break;
+        }
+        int y=rand()%A[x].size();
+        int z;
+        while(1){
+            z=rand()%(Q-2)+1;
+            if(z!=x) break;
+        }
         vector<vector<int>>copy_answer(Q);
         for(int i=1;i<Q-1;i++){
             rep(j,A[i].size()){
-                copy_answer[i].push_back(A[i][j]);
+                if(i==x&&j==y) copy_answer[z].push_back(A[i][j]);
+                else copy_answer[i].push_back(A[i][j]);
             }
-        }
-        int x=rand()%(Q-2)+1;
-        if(copy_answer[x].size()!=0){
-            int y=rand()%copy_answer[x].size();
-            int z;
-            while(1){
-                z=rand()%(Q-2)+1;
-                if(z!=x) break;
-            }
-            copy_answer[z].push_back(copy_answer[x][y]);
         }
         int copy_score=cal_score(copy_answer); 
         if(copy_score<best_score){
-            cout<<"update"<<endl;
+            cout<<"insert:"<<copy_score<<endl;
             rep(i,Q){
                 first_solution_where_todeliver[i].clear();
                 rep(j,copy_answer[i].size()){
@@ -324,10 +326,11 @@ void annealing_swap(vector<vector<int>>A){
         swap(copy_answer[x][y],copy_answer[z][w]);
         int copy_score=cal_score(copy_answer); 
         int pre_score=cal_score(A);
-        double tmp=start_temp+(end_temp-start_temp)*((double)(finish-start)/CLOCKS_PER_SEC)/limit_time;
+        double tmp=start_temp+(end_temp-start_temp)*((double)(time_finish-time_start)/CLOCKS_PER_SEC)/limit_time;
         //cout<<limit_time-(double)(finish-start)/CLOCKS_PER_SEC<<endl;
         double prob=exp((pre_score-copy_score)/tmp);
         double p=(rand()%RAND_MAX)/(double)RAND_MAX;
+        cout<<"swap:";
         cout<<prob<<":"<<p<<"    "<<pre_score<<":"<<copy_score<<endl;
         if(prob>p){
             best_score=copy_score;
@@ -340,6 +343,75 @@ void annealing_swap(vector<vector<int>>A){
             }
         }
   
+}
+
+void annealing_insert(vector<vector<int>>A)
+{
+        int x;
+        while(1){
+            x=rand()%(Q-2)+1;
+            if(A[x].size()!=0) break;
+        }
+        int y=rand()%A[x].size();
+        int z;
+        while(1){
+            z=rand()%(Q-2)+1;
+            if(z!=x) break;
+        }
+        vector<vector<int>>copy_answer(Q);
+        for(int i=1;i<Q-1;i++){
+            rep(j,A[i].size()){
+                if(i==x&&j==y) copy_answer[z].push_back(A[i][j]);
+                else copy_answer[i].push_back(A[i][j]);
+            }
+        }
+    int copy_score=cal_score(copy_answer); 
+    int pre_score=cal_score(A);
+    double tmp=start_temp+(end_temp-start_temp)*((double)(time_finish-time_start)/CLOCKS_PER_SEC)/limit_time;
+    //cout<<limit_time-(double)(finish-start)/CLOCKS_PER_SEC<<endl;
+    double prob=exp((pre_score-copy_score)/tmp);
+    double p=(rand()%RAND_MAX)/(double)RAND_MAX;
+    cout<<"insert:";
+    cout<<prob<<":"<<p<<"    "<<pre_score<<":"<<copy_score<<endl;
+    if(prob>p){
+        best_score=copy_score;
+        cout<<copy_score<<endl;
+        rep(i,Q){
+            first_solution_where_todeliver[i].clear();
+            rep(j,copy_answer[i].size()){
+                first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
+            }
+        }
+    }
+}
+void output_txt()
+{
+    ofstream outputfile("result_3.txt");
+    for(int i=1;i<Q-1;i++){
+        outputfile<<"Stop Point "<<i<<endl;
+        rep(j,K){
+            int cost=0,em=15;
+            vector<int>a;
+            outputfile<<"drone "<<j+1<<" : ";
+            rep(k,X[j][i].size()-1){
+                em-=3;
+                if(X[j][i][k]<10) em++;
+                cost+=w[X[j][i][k]][i];
+                a.push_back(w[X[j][i][k]][i]);
+                outputfile<<" "<<X[j][i][k];
+            }
+            rep(k,em) outputfile<<" ";
+            outputfile<<"cost : ";
+            rep(k,a.size()) {
+                if(k==a.size()-1) outputfile<<a[k]<<"=";
+                else outputfile<<a[k]<<"+";
+            }
+            outputfile<<cost<<endl;
+        }
+        outputfile<<endl;
+    }
+    outputfile<<"best score : "<<best_score<<endl;
+    outputfile<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC;
 }
 
 void output_customer_place()
@@ -374,13 +446,16 @@ int main()
     decide_todeliver_near();
     best_score=cal_score(first_solution_where_todeliver);
     cout<<best_score<<endl;
-    start=clock();
-    while((double)(finish-start)/CLOCKS_PER_SEC<limit_time){
-        annealing_swap(first_solution_where_todeliver);
-        finish=clock();
+    time_start=clock();
+    while((double)(time_finish-time_start)/CLOCKS_PER_SEC<limit_time){
+        int ss=rand()%100;
+        if(ss<40)annealing_swap(first_solution_where_todeliver);
+        else annealing_insert(first_solution_where_todeliver);
+        time_finish=clock();
     }
     cout<<best_score<<endl;
     decide_drone_todeliver_by_LPT(first_solution_where_todeliver);
+    output_txt();
     output_customer_place();
     output_answer(X);
 }

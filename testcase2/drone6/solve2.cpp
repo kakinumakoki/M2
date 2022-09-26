@@ -237,27 +237,29 @@ int cal_score(vector<vector<int>>A){
     return sum;
 }
 
-void insert(vector<vector<int>>A)
+void insert_search(vector<vector<int>>A)
 {
+        int x;
+        while(1){
+            x=rand()%(Q-2)+1;
+            if(A[x].size()!=0) break;
+        }
+        int y=rand()%A[x].size();
+        int z;
+        while(1){
+            z=rand()%(Q-2)+1;
+            if(z!=x) break;
+        }
         vector<vector<int>>copy_answer(Q);
         for(int i=1;i<Q-1;i++){
             rep(j,A[i].size()){
-                copy_answer[i].push_back(A[i][j]);
+                if(i==x&&j==y) copy_answer[z].push_back(A[i][j]);
+                else copy_answer[i].push_back(A[i][j]);
             }
-        }
-        int x=rand()%(Q-2)+1;
-        if(copy_answer[x].size()!=0){
-            int y=rand()%copy_answer[x].size();
-            int z;
-            while(1){
-                z=rand()%(Q-2)+1;
-                if(z!=x) break;
-            }
-            copy_answer[z].push_back(copy_answer[x][y]);
         }
         int copy_score=cal_score(copy_answer); 
         if(copy_score<best_score){
-            cout<<"update"<<endl;
+            cout<<"insert:"<<copy_score<<endl;
             rep(i,Q){
                 first_solution_where_todeliver[i].clear();
                 rep(j,copy_answer[i].size()){
@@ -369,7 +371,9 @@ int main()
     cout<<best_score<<endl;
     start=clock();
     while((double)(finish-start)/CLOCKS_PER_SEC<limit_time){
-        swap_search(first_solution_where_todeliver);
+        int ss=rand()%100;
+        if(ss<60) swap_search(first_solution_where_todeliver);
+        else insert_search(first_solution_where_todeliver);
         finish=clock();
     }
     time_finish=clock();
