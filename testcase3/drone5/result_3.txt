@@ -1,0 +1,72 @@
+Stop Point 1
+drone 1 :  62            cost : 10=10
+drone 2 :  37            cost : 19=19
+drone 3 :  99            cost : 14=14
+drone 4 :  87            cost : 13=13
+drone 5 :  48            cost : 11=11
+
+Stop Point 2
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 3
+drone 1 :  50 73         cost : 10+8=18
+drone 2 :  38 2          cost : 3+15=18
+drone 3 :  13 67         cost : 11+8=19
+drone 4 :  20 71         cost : 8+9=17
+drone 5 :  61            cost : 12=12
+
+Stop Point 4
+drone 1 :  74 69         cost : 4+31=35
+drone 2 :  77 93         cost : 8+25=33
+drone 3 :  14            cost : 30=30
+drone 4 :  10 52         cost : 10+24=34
+drone 5 :  90 75 24 63   cost : 12+3+13+5=33
+
+Stop Point 5
+drone 1 :  58            cost : 4=4
+drone 2 :  91            cost : 4=4
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 6
+drone 1 :  35 88         cost : 18+20=38
+drone 2 :  92 95         cost : 23+21=44
+drone 3 :  17 32         cost : 16+26=42
+drone 4 :  23 85 34      cost : 7+24+17=48
+drone 5 :  30 27         cost : 22+22=44
+
+Stop Point 7
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 8
+drone 1 :  45 98 83 56 22cost : 14+22+22+44+19=121
+drone 2 :  97 49 68 1    cost : 32+41+13+35=121
+drone 3 :  6 96 11 7 64 53 78 16 44cost : 20+9+15+29+6+6+13+7+19=124
+drone 4 :  31 0 47 25 70 cost : 21+26+35+22+20=124
+drone 5 :  21 36 79 55 51 65cost : 14+17+22+14+33+20=120
+
+Stop Point 9
+drone 1 :  8 33 19 42 43 cost : 18+10+6+31+9=74
+drone 2 :  9 54 12 4 57  cost : 32+9+11+6+9=67
+drone 3 :  72 66 28 94   cost : 39+11+12+25=87
+drone 4 :  80 41 89      cost : 13+34+43=90
+drone 5 :  40 18 3 84 26 cost : 19+8+15+11+24=77
+
+Stop Point 10
+drone 1 :  15 5          cost : 36+20=56
+drone 2 :  60 46         cost : 26+16=42
+drone 3 :  76 29         cost : 30+25=55
+drone 4 :  39 81 59      cost : 4+33+11=48
+drone 5 :  86 82         cost : 30+31=61
+
+best score : 400
+time : 5

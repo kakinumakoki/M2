@@ -6,11 +6,11 @@ drone 4 :  62 2          cost : 10+8=18
 drone 5 :  24 41         cost : 10+7=17
 
 Stop Point 2
-drone 1 :  37 79 68 31   cost : 15+9+8+3=35
-drone 2 :  94 81 8 10    cost : 14+10+8+3=35
-drone 3 :  78 3 20 35    cost : 13+11+6+5=35
-drone 4 :  99 80 77 73   cost : 12+11+8+4=35
-drone 5 :  82 40 71 17   cost : 12+11+8+4=35
+drone 1 :  37 68 73 31   cost : 15+8+4+3=30
+drone 2 :  94 71 8       cost : 14+8+8=30
+drone 3 :  99 3 17 10    cost : 12+11+4+3=30
+drone 4 :  82 81 20      cost : 12+10+6=28
+drone 5 :  80 40 35      cost : 11+11+5=27
 
 Stop Point 3
 drone 1 :  38            cost : 3=3
@@ -20,46 +20,46 @@ drone 4 :                cost : 0
 drone 5 :                cost : 0
 
 Stop Point 4
-drone 1 :  63            cost : 5=5
-drone 2 :  74            cost : 4=4
-drone 3 :  75            cost : 3=3
-drone 4 :  67            cost : 3=3
-drone 5 :                cost : 0
+drone 1 :  79            cost : 8=8
+drone 2 :  77            cost : 8=8
+drone 3 :  48            cost : 8=8
+drone 4 :  63 67         cost : 5+3=8
+drone 5 :  74 75         cost : 4+3=7
 
 Stop Point 5
-drone 1 :  15 56 1 91    cost : 24+16+7+4=51
-drone 2 :  69 14 48 58   cost : 22+17+8+4=51
-drone 3 :  27 97 93      cost : 21+17+13=51
-drone 4 :  7 47 32       cost : 21+17+13=51
-drone 5 :  49 85 13 51   cost : 20+18+9+4=51
+drone 1 :  27 13 1       cost : 21+9+7=37
+drone 2 :  49 32 58      cost : 20+13+4=37
+drone 3 :  85 93 91      cost : 18+13+4=35
+drone 4 :  97 14         cost : 17+17=34
+drone 5 :  47 56 51      cost : 17+16+4=37
 
 Stop Point 6
-drone 1 :  95 55 21      cost : 21+8+6=35
-drone 2 :  86 22 23      cost : 19+9+7=35
-drone 3 :  34 44 61      cost : 17+9+7=33
-drone 4 :  98 60 50 11   cost : 14+9+8+4=35
-drone 5 :  76 52 29 45   cost : 13+11+8+3=35
+drone 1 :  15 26 55 61   cost : 24+11+8+7=50
+drone 2 :  69 52 44 23   cost : 23+11+9+7=50
+drone 3 :  95 76 22 21   cost : 21+13+9+6=49
+drone 4 :  86 98 60 29   cost : 19+14+9+8=50
+drone 5 :  7 34 50 11 45 cost : 18+17+8+4+3=50
 
 Stop Point 7
-drone 1 :  26            cost : 7=7
-drone 2 :  96            cost : 5=5
+drone 1 :                cost : 0
+drone 2 :                cost : 0
 drone 3 :                cost : 0
 drone 4 :                cost : 0
 drone 5 :                cost : 0
 
 Stop Point 8
-drone 1 :  16            cost : 7=7
-drone 2 :  66            cost : 6=6
-drone 3 :  64            cost : 6=6
-drone 4 :  53            cost : 6=6
-drone 5 :                cost : 0
+drone 1 :  96            cost : 9=9
+drone 2 :  16            cost : 7=7
+drone 3 :  66            cost : 6=6
+drone 4 :  64            cost : 6=6
+drone 5 :  53            cost : 6=6
 
 Stop Point 9
-drone 1 :  83 18         cost : 16+8=24
-drone 2 :  65 54 4       cost : 12+9+6=27
-drone 3 :  28 43 30      cost : 12+9+4=25
-drone 4 :  84 33 92      cost : 11+10+3=24
-drone 5 :  12 57 19      cost : 11+9+6=26
+drone 1 :  83 43 92      cost : 16+9+3=28
+drone 2 :  78 33 4       cost : 12+10+6=28
+drone 3 :  65 57 18      cost : 12+9+8=29
+drone 4 :  28 54 19      cost : 12+9+6=27
+drone 5 :  84 12 30      cost : 11+11+4=26
 
 Stop Point 10
 drone 1 :  5             cost : 20=20
@@ -68,5 +68,5 @@ drone 3 :  25 88         cost : 12+6=18
 drone 4 :  59 36         cost : 11+8=19
 drone 5 :  42 70         cost : 9+8=17
 
-best score : 209
+best score : 205
 time : 3.001

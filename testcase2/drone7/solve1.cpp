@@ -24,7 +24,7 @@ using T=tuple<int,int,char,ll,string>;
 #define Q 12//num of StopPoint
 #define K 7//num of drone
 #define POP 30000//population size
-#define G 160//number of generations
+#define G 80//number of generations
 #define S 3//tournament size
 
 double pc=0.6;//probability of crossover
