@@ -1,0 +1,92 @@
+Stop Point 1
+drone 1 :  24                 cost : 24.3311=24.3311             drone late cost0
+drone 2 :  23                 cost : 24=24             drone late cost0
+drone 3 :  27                 cost : 14.4222=14.4222             drone late cost0
+drone 4 :  11                 cost : 10.7703=10.7703             drone late cost0
+drone 5 :  21                 cost : 10.198=10.198             drone late cost0
+drone 6 :  25                 cost : 8=8             drone late cost0
+drone 7 :  2                  cost : 4.47214=4.47214             drone late cost0
+
+Stop Point 2
+drone 1 :  39              cost : 0=0             drone late cost0
+drone 2 :  43              cost : 0=0             drone late cost0
+drone 3 :  16              cost : 0=0             drone late cost0
+drone 4 :  47              cost : 0=0             drone late cost0
+drone 5 :  36              cost : 0=0             drone late cost0
+drone 6 :  34              cost : 0=0             drone late cost0
+drone 7 :  19               cost : 0=0             drone late cost0
+
+Stop Point 3
+drone 1 :  28              cost : 5.72118=5.72118             drone late cost5.72118
+drone 2 :  0               cost : 0.221671=0.221671             drone late cost0.221671
+drone 3 :  3               cost : 0.864564=0.864564             drone late cost0.864564
+drone 4 :  4               cost : 0=0             drone late cost0
+drone 5 :  44              cost : 0=0             drone late cost0
+drone 6 :  38              cost : 0=0             drone late cost0
+drone 7 :  17              cost : 0=0             drone late cost0
+
+Stop Point 4
+drone 1 :  1               cost : 0=0             drone late cost0
+drone 2 :  31               cost : 0=0             drone late cost0
+drone 3 :                   cost : 0=0             drone late cost0
+drone 4 :                   cost : 0=0             drone late cost0
+drone 5 :                  cost : 0=0             drone late cost0
+drone 6 :                  cost : 0=0             drone late cost0
+drone 7 :                  cost : 0=0             drone late cost0
+
+Stop Point 5
+drone 1 :  49               cost : 0=0             drone late cost0
+drone 2 :  37              cost : 0=0             drone late cost0
+drone 3 :  6                  cost : 12.6491=12.6491             drone late cost0
+drone 4 :  12                 cost : 4.47214=4.47214             drone late cost0
+drone 5 :                     cost : 0             drone late cost0
+drone 6 :                     cost : 0             drone late cost0
+drone 7 :                     cost : 0             drone late cost0
+
+Stop Point 6
+drone 1 :  33              cost : 0=0             drone late cost0
+drone 2 :  9               cost : 0=0             drone late cost0
+drone 3 :                   cost : 0=0             drone late cost0
+drone 4 :                  cost : 0=0             drone late cost0
+drone 5 :                     cost : 0             drone late cost0
+drone 6 :                     cost : 0             drone late cost0
+drone 7 :                     cost : 0             drone late cost0
+
+Stop Point 7
+drone 1 :  13              cost : 0=0             drone late cost0
+drone 2 :  26               cost : 0=0             drone late cost0
+drone 3 :  45                 cost : 20.5913=20.5913             drone late cost0
+drone 4 :  5                  cost : 20.3961=20.3961             drone late cost0
+drone 5 :  8                  cost : 8=8             drone late cost0
+drone 6 :                     cost : 0             drone late cost0
+drone 7 :                     cost : 0             drone late cost0
+
+Stop Point 8
+drone 1 :  14              cost : 8.52207=8.52207             drone late cost8.52207
+drone 2 :  46              cost : 4.73191=4.73191             drone late cost4.73191
+drone 3 :  22              cost : 0.972445=0.972445             drone late cost0.972445
+drone 4 :  30               cost : 2.98694=2.98694             drone late cost2.98694
+drone 5 :  32               cost : 0.348125=0.348125             drone late cost0.348125
+drone 6 :  15 42              cost : 2.82843=2.82843             drone late cost0
+drone 7 :  29                 cost : 46.6905=46.6905             drone late cost0
+
+Stop Point 9
+drone 1 :  20              cost : 0=0             drone late cost0
+drone 2 :  10              cost : 0=0             drone late cost0
+drone 3 :  18              cost : 0=0             drone late cost0
+drone 4 :  7               cost : 0=0             drone late cost0
+drone 5 :  35              cost : 0=0             drone late cost0
+drone 6 :                  cost : 0=0             drone late cost0
+drone 7 :                  cost : 0=0             drone late cost0
+
+Stop Point 10
+drone 1 :  41              cost : 0=0             drone late cost0
+drone 2 :  40              cost : 0=0             drone late cost0
+drone 3 :  48              cost : 0=0             drone late cost0
+drone 4 :                   cost : 0=0             drone late cost0
+drone 5 :                  cost : 0=0             drone late cost0
+drone 6 :                     cost : 0             drone late cost0
+drone 7 :                     cost : 0             drone late cost0
+
+best score : 14.2432
+time : 3
