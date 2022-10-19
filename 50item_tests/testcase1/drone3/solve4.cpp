@@ -354,7 +354,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
                 }
                 y[min_processing_drone][i].push_back(B[j].second);
                 f_n_P[min_processing_drone]=true;
-                l_d[j]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(dp-t[j]));          
+                l_d[min_processing_drone]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(dp-t[min_processing_drone]));
             }
 //-------------------K台のドローンの中でトラックに戻ってくるまでの時間が一番長いものが停止ポイントiでのコスト
             double max_score=0;
@@ -372,6 +372,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
                 }
             }
         }
+        cout<<best_cost<<endl;
         sum+=best_cost;
 //--------------------------------出力------------------------------------------
         printf("Stop Point %d\n",i);
@@ -584,7 +585,7 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
                     }
                 }
                 f_n_P[min_processing_drone]=true;
-                l_d[j]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(dp-t[j]));          
+                l_d[min_processing_drone]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(dp-t[min_processing_drone]));          
             }
 //-------------------K台のドローンの中でトラックに戻ってくるまでの時間が一番長いものが停止ポイントiでのコスト
             double max_score=0;
@@ -600,7 +601,7 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
     }
 //---------------------最後の停止ポイントから最終目的地に移動するまでにトラックより遅いドローンいたらコストに加算
     double max_score=0;
-    for(int i=1;i<K;i++) max_score=max(late_drone[i][Q-1],max_score);
+    for(int i=0;i<K;i++) max_score=max(late_drone[i][Q-1],max_score);
     //cout<<"last:"<<max_score<<endl;
     sum+=max_score;
     return sum;
