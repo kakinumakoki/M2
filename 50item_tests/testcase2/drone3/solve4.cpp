@@ -47,7 +47,7 @@ double limit_time=3.0;
 double T=1.5;//トラックの移動距離にかける係数(ドローンより移動速度遅いこと表現)
 vector<vector<double>>best_late_drone(K,vector<double>(Q,0));//停止ポイントQでドローンKがどのくらい遅れてくるか
 vector<vector<bool>>best_fly_next_Point(K,vector<bool>(Q,false));//停止ポイントQでドローンKを最後Q+１に飛ばすか
-
+int pattern=3;//何を基準にドローン割り当てするか
 
 void input(){
     ifstream input_file("instance.txt");
@@ -250,7 +250,7 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
                 }
                 fly_next_Point[min_processing_drone][i]=true;
                 x[min_processing_drone][i].push_back(B[j].second);
-                late_drone[j][i+1]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(depart_truck_time-time[j]));          
+                late_drone[min_processing_drone][i+1]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(depart_truck_time-time[min_processing_drone]));          
             }
         }
 //-------------------K台のドローンの中でトラックに戻ってくるまでの時間が一番長いものが停止ポイントiでのコスト
@@ -311,9 +311,13 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
         //--------------------停止ポイントiで訪れるべき顧客番号と距離を格納
         vector<P>B;
         rep(j,A[i].size()){
-            B.push_back({w[A[i][j]][i],A[i][j]});
+            if(pattern==0) B.push_back({w[A[i][j]][i]+w[A[i][j]][i+1],A[i][j]});
+            else if(pattern==1) B.push_back({w[A[i][j]][i],A[i][j]});    
+            else if(pattern==2) B.push_back({w[A[i][j]][i+1],A[i][j]});
+            else if(pattern==3) B.push_back({w[A[i][j]][i]+2*w[A[i][j]][i+1],A[i][j]});
         }
-        sort(B.rbegin(),B.rend());
+        if(pattern==0||pattern==1||pattern==3)sort(B.rbegin(),B.rend());//大きい順に
+        else if(pattern==2) sort(B.begin(),B.end());//小さい順に
 //-------------------訪れるべき顧客がK人より少ない時トラックはすぐドローンを飛ばして出発する
 //-------------------もし前の停止ポイントから遅れているドローン入れば来るまで待つ
 //------------------訪れるべき顧客がK人以上なら
@@ -328,7 +332,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
             double t[K],dp=0;
             rep(j,K) t[j]=late_drone[j][i]; 
             for(int j=num;j<B.size();j++){
-//------------------現在の停止ポイントから遠いもののトップnum人を除いたものでLPT
+//------------------トップnum人を除いたものでLPT
 //------------------ここでスケジュールを組まれたものは荷物を届けた後トラックに戻ってくる
                 int min_processing_drone=-1;
                 double min_processing_time=1e9;
@@ -342,7 +346,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
                 y[min_processing_drone][i].push_back(B[j].second);
             }
             rep(j,K) dp=max(dp,t[j]);
-//----------------遠いものトップnum人の顧客を届けたドローンはトラックに戻らず次の停止ポイントに移動
+//----------------num人の顧客を届けたドローンはトラックに戻らず次の停止ポイントに移動
             for(int j=0;j<num;j++){
                 int min_processing_drone=0;
                 double min_processing_time=1e9;
@@ -354,11 +358,13 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
                 }
                 y[min_processing_drone][i].push_back(B[j].second);
                 f_n_P[min_processing_drone]=true;
-                l_d[j]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(dp-t[j]));          
+                double dist=w[B[j].second][i]/2+w[B[j].second][i+1]/2;
+                l_d[min_processing_drone]=max(0.0,dist-dist_by_truck[i][i+1]-(dp-t[min_processing_drone]));
             }
 //-------------------K台のドローンの中でトラックに戻ってくるまでの時間が一番長いものが停止ポイントiでのコスト
             double max_score=0;
             rep(j,K) max_score=max(max_score,t[j]);
+            //cout<<num<<":"<<max_score<<endl;
             if(best_cost>max_score){
                 best_cost=max_score;
                 rep(j,K){
@@ -374,7 +380,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
         }
         sum+=best_cost;
 //--------------------------------出力------------------------------------------
-        printf("Stop Point %d\n",i);
+        printf("Stop Point %d Score: %.2f\n",i,best_cost);
         rep(j,K){
             cout<<"drone "<<j<<": ";
             rep(k,x[j][i].size()){
@@ -396,6 +402,21 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
             }
             printf(" = %.2f\n",time[j]);
         }
+        cout<<"truck : "<<dist_by_truck[i][i+1]<<endl;
+        rep(j,K){
+            cout<<"drone "<<j<<": ";
+            rep(k,x[j][i].size()){
+                if(k!=x[j][i].size()-1){
+                    cout<<w[x[j][i][k]][i]<<" ";
+                }
+                else{
+                    if(fly_next_Point[j][i]) cout<<"next: "<<w[x[j][i][k]][i]/2+w[x[j][i][k]][i+1]/2<<" ";
+                    else cout<<w[x[j][i][k]][i];
+                }
+            }
+            cout<<"||"<<late_drone[j][i]<<endl;
+        }
+
         cout<<endl;
         if(i==Q-2){
             cout<<"last destination"<<endl;
@@ -544,9 +565,13 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
         //--------------------停止ポイントiで訪れるべき顧客番号と距離を格納
         vector<P>B;
         rep(j,A[i].size()){
-            B.push_back({w[A[i][j]][i],A[i][j]});
+            if(pattern==0) B.push_back({w[A[i][j]][i]+w[A[i][j]][i+1],A[i][j]});
+            else if(pattern==1) B.push_back({w[A[i][j]][i],A[i][j]});    
+            else if(pattern==2) B.push_back({w[A[i][j]][i+1],A[i][j]});
+            else if(pattern==3) B.push_back({w[A[i][j]][i]+2*w[A[i][j]][i+1],A[i][j]});
         }
-        sort(B.rbegin(),B.rend());
+        if(pattern==0||pattern==1||pattern==3)sort(B.rbegin(),B.rend());
+        else if(pattern==2) sort(B.begin(),B.end());
 //-------------------訪れるべき顧客がK人より少ない時トラックはすぐドローンを飛ばして出発する
 //-------------------もし前の停止ポイントから遅れているドローン入れば来るまで待つ
 //------------------訪れるべき顧客がK人以上なら
@@ -584,7 +609,8 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
                     }
                 }
                 f_n_P[min_processing_drone]=true;
-                l_d[j]=max(0.0,B[j].first/2+w[B[j].second][i+1]/2-dist_by_truck[i][i+1]-(dp-t[j]));          
+                double dist=w[B[j].second][i]/2+w[B[j].second][i+1]/2;
+                l_d[min_processing_drone]=max(0.0,dist-dist_by_truck[i][i+1]-(dp-t[min_processing_drone]));
             }
 //-------------------K台のドローンの中でトラックに戻ってくるまでの時間が一番長いものが停止ポイントiでのコスト
             double max_score=0;
@@ -600,7 +626,7 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
     }
 //---------------------最後の停止ポイントから最終目的地に移動するまでにトラックより遅いドローンいたらコストに加算
     double max_score=0;
-    for(int i=1;i<K;i++) max_score=max(late_drone[i][Q-1],max_score);
+    for(int i=0;i<K;i++) max_score=max(late_drone[i][Q-1],max_score);
     //cout<<"last:"<<max_score<<endl;
     sum+=max_score;
     return sum;
@@ -627,7 +653,8 @@ void insert_search(vector<vector<int>>A)
                 else copy_answer[i].push_back(A[i][j]);
             }
         }
-        double copy_score=cal_score_dronenextPoint(copy_answer); 
+        double copy_score=cal_score_dronenextPoint_test(copy_answer); 
+        //cout<<copy_score<<endl;
         if(copy_score<best_score){
             cout<<"insert:"<<copy_score<<endl;
             rep(i,Q){
@@ -664,7 +691,8 @@ void swap_search(vector<vector<int>>A)
             }
         }       
         swap(copy_answer[x][y],copy_answer[z][w]);
-        double copy_score=cal_score_dronenextPoint(copy_answer); 
+        double copy_score=cal_score_dronenextPoint_test(copy_answer); 
+        //cout<<copy_score<<endl;
         if(copy_score<best_score){
             best_score=copy_score;
             cout<<"swap:"<<copy_score<<endl;
