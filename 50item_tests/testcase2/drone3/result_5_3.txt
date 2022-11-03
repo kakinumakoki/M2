@@ -1,0 +1,116 @@
+Stop Point 0 Score: 0.00
+drone 0: 8 go next stop point      cost: = 0.00
+drone 1: 20 go next stop point      cost: = 0.00
+drone 2: 6 go next stop point      cost: = 0.00
+truck : 31.7844
+drone 0: next: 22.0446 ||0
+drone 1: next: 21.1931 ||0
+drone 2: next: 21.3026 ||0
+
+
+Stop Point 1 Score: 31.74
+drone 0: 18 16 30 4 go next stop point      cost:11.66 5.66 10.77  = 28.09
+drone 1: 3 22 48 go next stop point      cost:10.20 21.54  = 31.74
+drone 2: 39 27 go next stop point      cost:18.44  = 18.44
+truck : 27.6586
+drone 0: 11.6619 5.65685 10.7703 next: 37.9582 ||0
+drone 1: 10.198 21.5407 next: 33.8981 ||0
+drone 2: 18.4391 next: 48.5168 ||0
+
+
+Stop Point 2 Score: 19.66
+drone 0: 37 49 go next stop point      cost:late cost(6.65) 10.20  = 16.85
+drone 1: 40 1 go next stop point      cost:late cost(6.24) 13.42  = 19.66
+drone 2: 42 go next stop point      cost:late cost(7.56)  = 7.56
+truck : 5.40833
+drone 0: 10.198 next: 18.4403 ||6.64993
+drone 1: 13.4164 next: 18.0278 ||6.2395
+drone 2: next: 27.0749 ||7.55858
+
+
+Stop Point 3 Score: 12.62
+drone 0: 23 go next stop point      cost:late cost(10.22)  = 10.22
+drone 1: 32 go next stop point      cost:late cost(12.62)  = 12.62
+drone 2: 17 go next stop point      cost:late cost(9.57)  = 9.57
+truck : 15.2971
+drone 0: next: 21.0525 ||10.224
+drone 1: next: 14.1655 ||12.6194
+drone 2: next: 22.0938 ||9.56924
+
+
+Stop Point 4 Score: 3.75
+drone 0: 5 go next stop point      cost:late cost(3.36)  = 3.36
+drone 1: 13 go next stop point      cost: = 0.00
+drone 2: 11 go next stop point      cost:late cost(3.75)  = 3.75
+truck : 6.18466
+drone 0: next: 11.1942 ||3.36001
+drone 1: next: 14.872 ||0
+drone 2: next: 9.8573 ||3.74654
+
+
+Stop Point 5 Score: 4.94
+drone 0: 38 go next stop point      cost:late cost(4.62)  = 4.62
+drone 1: 19 go next stop point      cost:late cost(4.94)  = 4.94
+drone 2: 21 go next stop point      cost:late cost(3.67)  = 3.67
+truck : 6.36396
+drone 0: next: 14.4654 ||4.62298
+drone 1: next: 13.6832 ||4.9408
+drone 2: next: 18.1121 ||3.67264
+
+
+Stop Point 6 Score: 12.98
+drone 0: 41 go next stop point      cost:late cost(7.78)  = 7.78
+drone 1: 46 47 go next stop point      cost:late cost(7.32) 5.66  = 12.98
+drone 2: 7 go next stop point      cost:late cost(10.48)  = 10.48
+truck : 12.7279
+drone 0: next: 22.9379 ||7.78361
+drone 1: 5.65685 next: 9.50827 ||7.31927
+drone 2: next: 16.4924 ||10.48
+
+
+Stop Point 7 Score: 5.02
+drone 0: 34 go next stop point      cost:late cost(5.02)  = 5.02
+drone 1: 14 go next stop point      cost: = 0.00
+drone 2: 2 go next stop point      cost:late cost(1.27)  = 1.27
+truck : 6
+drone 0: next: 7.2111 ||5.01746
+drone 1: next: 15.3178 ||0
+drone 2: next: 14.1544 ||1.26839
+
+
+Stop Point 8 Score: 4.41
+drone 0: 35 go next stop point      cost:late cost(1.21)  = 1.21
+drone 1: 0 go next stop point      cost:late cost(4.30)  = 4.30
+drone 2: 25 go next stop point      cost:late cost(4.41)  = 4.41
+truck : 69.1466
+drone 0: next: 61.1803 ||1.2111
+drone 1: next: 58.0115 ||4.30033
+drone 2: next: 54.7111 ||4.40534
+
+
+Stop Point 9 Score: 0.00
+drone 0: 15 go next stop point      cost: = 0.00
+drone 1: 44 go next stop point      cost: = 0.00
+drone 2: 43 go next stop point      cost: = 0.00
+truck : 35.6546
+drone 0: next: 43.1864 ||0
+drone 1: next: 29.4129 ||0
+drone 2: next: 24.3283 ||0
+
+
+Stop Point 10 Score: 58.15
+drone 0: 45 9 36 go next stop point      cost:late cost(7.53) 6.00 24.08  = 37.62
+drone 1: 24 26 28 12 go next stop point      cost:20.00 12.65 14.14  = 46.79
+drone 2: 10 31 29 33 go next stop point      cost:14.42 22.09 21.63  = 58.15
+truck : 22.8965
+drone 0: 6 24.0832 next: 51.6655 ||7.53182
+drone 1: 20 12.6491 14.1421 next: 36.0454 ||0
+drone 2: 14.4222 22.0907 21.6333 next: 33.4245 ||0
+
+last destination
+drone 0 late cost(8.24)
+drone 1 late cost(1.79)
+drone 2 late cost(10.53)
+
+score : 163.774
+time : 3.001
