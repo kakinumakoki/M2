@@ -1,0 +1,92 @@
+Stop Point 1
+drone 1 :  10                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  32                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  49                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :  20                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 5 :  29                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 6 :  34                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 7 :  31                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+
+Stop Point 2
+drone 1 :                  cost : 22.7812                              drone late cost : 22.7812
+drone 2 :  2               cost : 12=21.6155                      drone late cost : 9.61553
+drone 3 :  46              cost : 13.1267                              drone late cost : 13.1267  次の停止ポイントに移動
+drone 4 :  25              cost : 10.4397                              drone late cost : 10.4397  次の停止ポイントに移動
+drone 5 :  45              cost : 6=16.2994                      drone late cost : 10.2994
+drone 6 :  36 37           cost : 16.1245=16.1245                      drone late cost : 0  次の停止ポイントに移動
+drone 7 :  28              cost : 12.8062=20.095                      drone late cost : 7.28879
+
+Stop Point 3
+drone 1 :  16                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  18                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :                  cost : 0                              drone late cost : 0
+drone 4 :                  cost : 0                              drone late cost : 0
+drone 5 :                     cost : 0                              drone late cost : 0
+drone 6 :                  cost : 0                              drone late cost : 0
+drone 7 :                     cost : 0                              drone late cost : 0
+
+Stop Point 4
+drone 1 :  17              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  9               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  22                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :  21                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 5 :  27                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 6 :  44                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 7 :  47                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+
+Stop Point 5
+drone 1 :  41              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  38               cost : 0.581559                              drone late cost : 0.581559  次の停止ポイントに移動
+drone 3 :  30              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :  11              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 5 :  7               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 6 :  42              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 7 :  8               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+
+Stop Point 6
+drone 1 :                  cost : 4.31088                              drone late cost : 4.31088
+drone 2 :  3               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  43              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :                  cost : 3.05784                              drone late cost : 3.05784
+drone 5 :                   cost : 0.896275                              drone late cost : 0.896275
+drone 6 :  23              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 7 :  5                cost : 0                              drone late cost : 0  次の停止ポイントに移動
+
+Stop Point 7
+drone 1 :  1                  cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  39               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  14              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :  12                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 5 :  26                 cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 6 :  35              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 7 :  13               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+
+Stop Point 8
+drone 1 :  40               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  19              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  33              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :                  cost : 0                              drone late cost : 0
+drone 5 :                  cost : 0                              drone late cost : 0
+drone 6 :                  cost : 0                              drone late cost : 0
+drone 7 :                  cost : 0                              drone late cost : 0
+
+Stop Point 9
+drone 1 :  24              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 2 :  48              cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  6               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :                     cost : 0                              drone late cost : 0
+drone 5 :                     cost : 0                              drone late cost : 0
+drone 6 :                     cost : 0                              drone late cost : 0
+drone 7 :                     cost : 0                              drone late cost : 0
+
+Stop Point 10
+drone 1 :                  cost : 1.22375                              drone late cost : 1.22375
+drone 2 :  4               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 3 :  15               cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 4 :  0                  cost : 0                              drone late cost : 0  次の停止ポイントに移動
+drone 5 :                     cost : 0                              drone late cost : 0
+drone 6 :                     cost : 0                              drone late cost : 0
+drone 7 :                     cost : 0                              drone late cost : 0
+
+best score : 28.9644
+time : 3

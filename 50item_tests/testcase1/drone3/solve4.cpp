@@ -430,6 +430,13 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
         }
         cout<<endl;
     }
+    double sum_late=0;
+    rep(i,K){
+        for(int j=1;j<Q-1;j++){
+            sum_late+=late_drone[i][j];
+        }
+    }
+    cout<<"sum late:"<<sum_late<<endl;
     rep(i,K){
         rep(j,Q){
             best_fly_next_Point[i][j]=fly_next_Point[i][j];
@@ -614,7 +621,9 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
             }
 //-------------------K台のドローンの中でトラックに戻ってくるまでの時間が一番長いものが停止ポイントiでのコスト
             double max_score=0;
-            rep(j,K) max_score=max(max_score,t[j]);
+            rep(j,K){
+                max_score=max(max_score,t[j]);
+            }
             if(best_cost>max_score){
                 best_cost=max_score;
                 rep(j,K){

@@ -746,9 +746,9 @@ void output_txt()
                 if(k==X[j][i].size()-2&&best_fly_next_Point[j][i]){
                     outputfile<<" "<<X[j][i][k];                   
                 }
-                else if(best_fly_next_Point[j][i-1]&&k==0){
+                /*else if(best_fly_next_Point[j][i-1]&&k==0){
                     continue;
-                }
+                }*/
                 else{
                     outputfile<<" "<<X[j][i][k];                   
                     a.push_back(w[X[j][i][k]][i]);

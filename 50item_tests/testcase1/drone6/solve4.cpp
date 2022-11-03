@@ -47,7 +47,7 @@ double limit_time=3.0;
 double T=1.5;//トラックの移動距離にかける係数(ドローンより移動速度遅いこと表現)
 vector<vector<double>>best_late_drone(K,vector<double>(Q,0));//停止ポイントQでドローンKがどのくらい遅れてくるか
 vector<vector<bool>>best_fly_next_Point(K,vector<bool>(Q,false));//停止ポイントQでドローンKを最後Q+１に飛ばすか
-int pattern=3;//何を基準にドローン割り当てするか
+int pattern=0;//何を基準にドローン割り当てするか
 
 void input(){
     ifstream input_file("instance.txt");
