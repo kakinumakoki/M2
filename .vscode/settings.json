@@ -6,6 +6,12 @@
         "iosfwd": "cpp",
         "deque": "cpp",
         "list": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "algorithm": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xutility": "cpp",
+        "iostream": "cpp",
+        "fstream": "cpp"
     }
 }
