@@ -51,10 +51,13 @@ double limit_time=3.0;
 double T=1.5;//トラックの移動距離にかける係数(ドローンより移動速度遅いこと表現)
 vector<vector<double>>best_late_drone(K,vector<double>(Q,0));//停止ポイントQでドローンKがどのくらい遅れてくるか
 vector<vector<bool>>best_fly_next_Point(K,vector<bool>(Q,false));//停止ポイントQでドローンKを最後Q+１に飛ばすか
-int pattern=0;//何を基準にドローン割り当てするか
-double startTemp=1;
+int pattern=1;//何を基準にドローン割り当てするか
+double startTemp;
 double endTemp=0;
-long annealing_endTime=5.0,annealing_nowTime;
+long annealing_endTime=60.0,annealing_nowTime;
+vector<pair<double,double>>processing_result;
+double annealing_counter=0;
+double annealing_show=(double)annealing_endTime/400;
 
 void input(){
     ifstream input_file("instance.txt");
@@ -331,7 +334,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
         double best_cost=1000;
         int size=B.size();
         int sss=min(K,size);
-        for(int num=0;num<=sss;num++)
+        for(int num=sss;num<=sss;num++)
         {
             vector<bool>f_n_P(K,false);
             vector<double>l_d(K,0);
@@ -585,7 +588,7 @@ double cal_score_dronenextPoint_test(vector<vector<int>>A){
         double best_cost=1000;
         int size=B.size();
         int sss=min(K,size);
-        for(int num=0;num<=sss;num++)
+        for(int num=sss;num<=sss;num++)
         {
             vector<bool>f_n_P(K,false);
             vector<double>l_d(K,0);
@@ -695,11 +698,14 @@ void annealing_insert_search(vector<vector<int>>A)
         }
         double copy_score=cal_score_dronenextPoint_test(copy_answer); 
         annealing_nowTime=clock();
-        //cout<<copy_score<<endl;
         double temp=startTemp+(endTemp-startTemp)*((double)annealing_nowTime/CLOCKS_PER_SEC-(double)start/CLOCKS_PER_SEC)/annealing_endTime;
         double probability=exp((best_score-copy_score)/temp);
         if(copy_score<best_score||probability>(double)(rand()%RAND_MAX)/RAND_MAX){
-            cout<<"insert:"<<copy_score<<endl;
+            if((double)(annealing_nowTime-start)/CLOCKS_PER_SEC-annealing_counter>annealing_show){
+                processing_result.push_back({(double)(annealing_nowTime-start)/CLOCKS_PER_SEC,copy_score});
+                annealing_counter+=annealing_show;
+                cout<<copy_score<<endl;
+            }
             rep(i,Q){
                 solution_where_todeliver[i].clear();
                 rep(j,copy_answer[i].size()){
@@ -780,8 +786,12 @@ void annealing_swap_search(vector<vector<int>>A)
         double temp=startTemp+(endTemp-startTemp)*((double)annealing_nowTime/CLOCKS_PER_SEC-(double)start/CLOCKS_PER_SEC)/annealing_endTime;
         double probability=exp((best_score-copy_score)/temp);
         if(copy_score<best_score||probability>(double)(rand()%RAND_MAX)/RAND_MAX){
+            if((double)(annealing_nowTime-start)/CLOCKS_PER_SEC-annealing_counter>annealing_show){
+                processing_result.push_back({(double)(annealing_nowTime-start)/CLOCKS_PER_SEC,copy_score});
+                annealing_counter+=annealing_show;
+                cout<<copy_score<<endl;
+            }
             best_score=copy_score;
-            cout<<"swap:"<<copy_score<<endl;
             rep(i,Q){
                 solution_where_todeliver[i].clear();
                 rep(j,copy_answer[i].size()){
@@ -799,7 +809,13 @@ void output_customer_place()
     }
     outputfile.close();
 }
-
+void output_annealing_result()
+{
+    ofstream outputfile("annealing_result_6.txt");
+    rep(i,processing_result.size()){
+        outputfile<<processing_result[i].first<<" "<<processing_result[i].second<<endl;
+    }
+}
 void output_answer(vector<vector<vector<int>>>x)
 {
     ofstream outputfile("answer_6.txt");
@@ -889,6 +905,8 @@ int main()
             }
         }
     }
+    processing_result.push_back({0,best_score});
+    startTemp=best_score/10;
     start=clock();
     while((double)(finish-start)/CLOCKS_PER_SEC<annealing_endTime){
         int ss=rand()%100;
@@ -911,5 +929,6 @@ int main()
     cout<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC<<endl;
     output_txt();
     output_customer_place();
+    output_annealing_result();
     output_answer(X);
 }
