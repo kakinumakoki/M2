@@ -25,5 +25,6 @@ pyplot.plot(x,y)
 
 pyplot.xlabel("x")
 pyplot.ylabel("y")
+pyplot.grid(True)
 
 pyplot.show()

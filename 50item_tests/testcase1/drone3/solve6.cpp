@@ -58,7 +58,6 @@ long annealing_endTime=60.0,annealing_nowTime;
 vector<pair<double,double>>processing_result;
 double annealing_counter=0;
 double annealing_show=(double)annealing_endTime/400;
-int counter=0;
 
 void input(){
     ifstream input_file("instance.txt");
@@ -910,7 +909,6 @@ int main()
     startTemp=best_score/10;
     start=clock();
     while((double)(finish-start)/CLOCKS_PER_SEC<annealing_endTime){
-        counter++;
         int ss=rand()%100;
         if(ss<60) annealing_swap_search(solution_where_todeliver);
         else annealing_insert_search(solution_where_todeliver);
@@ -933,5 +931,4 @@ int main()
     output_customer_place();
     output_annealing_result();
     output_answer(X);
-    cout<<counter<<endl;
 }
