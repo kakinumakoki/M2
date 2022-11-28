@@ -25,8 +25,8 @@ using T=tuple<int,int,char,ll,string>;
 #define K 6//num of drone
 
 int best_score=1e9;
-double start_temp=20;
-double end_temp=1;
+double start_temp;
+double end_temp=0;
 
 
 struct Point{
@@ -37,9 +37,14 @@ Point C[N];
 Point Stop_Point[Q];
 int w[N][Q];
 vector<vector<int>>first_solution_where_todeliver(Q);
+vector<vector<int>>best_solution_where_todeliver(Q);
+int best_solution_score;
 vector<vector<vector<int>>>X(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
-long time_start,time_finish;
-double limit_time=5;
+long time_start,time_finish,start,finish;
+double limit_time=5,annealing_limit_time=60;
+double annealing_counter=0;
+double annealing_show=(double)annealing_limit_time/400;
+vector<pair<double,int>>processing_result;
 
 void input(){
     ifstream input_file("instance.txt");
@@ -290,7 +295,7 @@ void swap_search(vector<vector<int>>A)
         int copy_score=cal_score(copy_answer); 
         if(copy_score<best_score){
             best_score=copy_score;
-            cout<<copy_score<<endl;
+            cout<<"insert :"<<copy_score<<endl;
             rep(i,Q){
                 first_solution_where_todeliver[i].clear();
                 rep(j,copy_answer[i].size()){
@@ -325,21 +330,32 @@ void annealing_swap(vector<vector<int>>A){
         }       
         swap(copy_answer[x][y],copy_answer[z][w]);
         int copy_score=cal_score(copy_answer); 
-        int pre_score=cal_score(A);
-        double tmp=start_temp+(end_temp-start_temp)*((double)(time_finish-time_start)/CLOCKS_PER_SEC)/limit_time;
+        double tmp=start_temp+(end_temp-start_temp)*((double)(time_finish-time_start)/CLOCKS_PER_SEC)/annealing_limit_time;
         //cout<<limit_time-(double)(finish-start)/CLOCKS_PER_SEC<<endl;
-        double prob=exp((pre_score-copy_score)/tmp);
-        double p=(rand()%RAND_MAX)/(double)RAND_MAX;
-        cout<<"swap:";
-        cout<<prob<<":"<<p<<"    "<<pre_score<<":"<<copy_score<<endl;
+        double prob=exp((best_score-copy_score)/tmp);
+        double p=(double)(rand()%RAND_MAX)/RAND_MAX;
         if(prob>p){
+            if((double)(time_finish-time_start)/CLOCKS_PER_SEC-annealing_counter>annealing_show){
+                processing_result.push_back({(double)(time_finish-time_start)/CLOCKS_PER_SEC,copy_score});
+                annealing_counter+=annealing_show;
+                    cout<<copy_score<<endl;
+            }
             best_score=copy_score;
-            cout<<copy_score<<endl;
             rep(i,Q){
                 first_solution_where_todeliver[i].clear();
                 rep(j,copy_answer[i].size()){
                     first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
                 }
+            }
+            if(best_score<best_solution_score){
+                best_solution_score=best_score;
+                rep(i,Q){
+                    best_solution_where_todeliver[i].clear();
+                    rep(j,first_solution_where_todeliver[i].size()){
+                        best_solution_where_todeliver[i].push_back(first_solution_where_todeliver[i][j]);
+                    }   
+                }
+
             }
         }
   
@@ -365,24 +381,36 @@ void annealing_insert(vector<vector<int>>A)
                 else copy_answer[i].push_back(A[i][j]);
             }
         }
-    int copy_score=cal_score(copy_answer); 
-    int pre_score=cal_score(A);
-    double tmp=start_temp+(end_temp-start_temp)*((double)(time_finish-time_start)/CLOCKS_PER_SEC)/limit_time;
-    //cout<<limit_time-(double)(finish-start)/CLOCKS_PER_SEC<<endl;
-    double prob=exp((pre_score-copy_score)/tmp);
-    double p=(rand()%RAND_MAX)/(double)RAND_MAX;
-    cout<<"insert:";
-    cout<<prob<<":"<<p<<"    "<<pre_score<<":"<<copy_score<<endl;
-    if(prob>p){
-        best_score=copy_score;
-        cout<<copy_score<<endl;
-        rep(i,Q){
-            first_solution_where_todeliver[i].clear();
-            rep(j,copy_answer[i].size()){
-                first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
+        int copy_score=cal_score(copy_answer); 
+        double tmp=start_temp+(end_temp-start_temp)*((double)(time_finish-time_start)/CLOCKS_PER_SEC)/annealing_limit_time;
+        //cout<<limit_time-(double)(finish-start)/CLOCKS_PER_SEC<<endl;
+        double prob=exp((best_score-copy_score)/tmp);
+        double p=(double)(rand()%RAND_MAX)/RAND_MAX;
+        if(prob>p){
+            if((double)(time_finish-time_start)/CLOCKS_PER_SEC-annealing_counter>annealing_show){
+                processing_result.push_back({(double)(time_finish-time_start)/CLOCKS_PER_SEC,copy_score});
+                annealing_counter+=annealing_show;
+                cout<<copy_score<<endl;
+            }
+            best_score=copy_score;
+            rep(i,Q){
+                first_solution_where_todeliver[i].clear();
+                rep(j,copy_answer[i].size()){
+                    first_solution_where_todeliver[i].push_back(copy_answer[i][j]);
+                }
+            }
+            if(best_score<best_solution_score){
+                best_solution_score=best_score;
+                rep(i,Q){
+                    best_solution_where_todeliver[i].clear();
+                    rep(j,first_solution_where_todeliver[i].size()){
+                        best_solution_where_todeliver[i].push_back(first_solution_where_todeliver[i][j]);
+                    }   
+                }
+
             }
         }
-    }
+  
 }
 void output_txt()
 {
@@ -436,6 +464,13 @@ void output_answer(vector<vector<vector<int>>>x)
         }
     }
 }
+void output_annealing_result()
+{
+    ofstream outputfile("annealing_result_6.txt");
+    rep(i,processing_result.size()){
+        outputfile<<processing_result[i].first<<" "<<processing_result[i].second<<endl;
+    }
+}
 
 int main()
 {
@@ -446,16 +481,34 @@ int main()
     decide_todeliver_near();
     best_score=cal_score(first_solution_where_todeliver);
     cout<<best_score<<endl;
+    start=clock();
+    while((double)(finish-start)/CLOCKS_PER_SEC<limit_time){
+        int ss=rand()%100;
+        if(ss<60) swap_search(first_solution_where_todeliver);
+        else insert_search(first_solution_where_todeliver);
+        finish=clock();
+    }
+
+    rep(i,Q){
+        rep(j,first_solution_where_todeliver[i].size()){
+            best_solution_where_todeliver[i].push_back(first_solution_where_todeliver[i][j]);
+        }
+    }
+    best_solution_score=best_score;
     time_start=clock();
-    while((double)(time_finish-time_start)/CLOCKS_PER_SEC<limit_time){
+    time_finish=clock();
+    start_temp=max((double)best_score/100,1.0);
+    processing_result.push_back({0,best_score});
+    while((double)(time_finish-time_start)/CLOCKS_PER_SEC<annealing_limit_time){
         int ss=rand()%100;
         if(ss<40)annealing_swap(first_solution_where_todeliver);
         else annealing_insert(first_solution_where_todeliver);
         time_finish=clock();
     }
-    cout<<best_score<<endl;
-    decide_drone_todeliver_by_LPT(first_solution_where_todeliver);
+    cout<<"best_score : "<<best_solution_score<<endl;
+    decide_drone_todeliver_by_LPT(best_solution_where_todeliver);
     output_txt();
     output_customer_place();
     output_answer(X);
+    output_annealing_result();
 }
