@@ -1,0 +1,72 @@
+Stop Point 1
+drone 1 :  34            cost : 9=9
+drone 2 :  29            cost : 10=10
+drone 3 :  32            cost : 13=13
+drone 4 :  31            cost : 9=9
+drone 5 :  20            cost : 12=12
+
+Stop Point 2
+drone 1 :  36            cost : 9=9
+drone 2 :  37            cost : 10=10
+drone 3 :  46            cost : 11=11
+drone 4 :  2             cost : 6=6
+drone 5 :  45 28         cost : 3+7=10
+
+Stop Point 3
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 4
+drone 1 :  27 44         cost : 10+6=16
+drone 2 :  9 47          cost : 12+6=18
+drone 3 :  16            cost : 14=14
+drone 4 :  25            cost : 17=17
+drone 5 :  4             cost : 17=17
+
+Stop Point 5
+drone 1 :  22 38 42      cost : 9+5+5=19
+drone 2 :  30 7          cost : 14+6=20
+drone 3 :  21 17         cost : 10+10=20
+drone 4 :  8 11          cost : 5+13=18
+drone 5 :  18            cost : 18=18
+
+Stop Point 6
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 7
+drone 1 :  35 43 3       cost : 12+5+5=22
+drone 2 :  49            cost : 18=18
+drone 3 :  10            cost : 22=22
+drone 4 :  23 5          cost : 13+10=23
+drone 5 :  13 26         cost : 6+14=20
+
+Stop Point 8
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 9
+drone 1 :  1             cost : 18=18
+drone 2 :  40 39         cost : 4+15=19
+drone 3 :  12            cost : 16=16
+drone 4 :  19 33         cost : 7+9=16
+drone 5 :  14            cost : 18=18
+
+Stop Point 10
+drone 1 :  15            cost : 16=16
+drone 2 :  41            cost : 15=15
+drone 3 :  24 48         cost : 5+9=14
+drone 4 :  0             cost : 14=14
+drone 5 :  6             cost : 12=12
+
+best score : 123
+time : 60

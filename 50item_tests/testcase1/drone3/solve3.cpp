@@ -438,7 +438,7 @@ void output_txt()
         }
         outputfile<<endl;
     }
-    outputfile<<"best score : "<<best_score<<endl;
+    outputfile<<"best score : "<<best_solution_score<<endl;
     outputfile<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC;
 }
 

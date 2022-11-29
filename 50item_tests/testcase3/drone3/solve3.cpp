@@ -438,13 +438,13 @@ void output_txt()
         }
         outputfile<<endl;
     }
-    outputfile<<"best score : "<<best_score<<endl;
+    outputfile<<"best score : "<<best_solution_score<<endl;
     outputfile<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC;
 }
 
 void output_customer_place()
 {
-    ofstream outputfile("customer_place_1.txt");
+    ofstream outputfile("customer_place_1.txt"); 
     rep(i,N){
         outputfile<<C[i].x<<" "<<C[i].y<<endl;
     }

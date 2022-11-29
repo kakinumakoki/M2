@@ -670,7 +670,7 @@ int main()
     srand((unsigned int)time(NULL));
     input();
     time_start=clock();
-    truck_root_decide();
+    //truck_root_decide();
     cal_dist_customer_StopPoint();
     decide_where_todeliver();
     int min_answer=1e9,min_index=-1;
