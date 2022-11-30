@@ -906,7 +906,7 @@ int main()
         }
     }
     processing_result.push_back({0,best_score});
-    startTemp=best_score/10;
+    startTemp=max(best_score/100,1.0);
     start=clock();
     while((double)(finish-start)/CLOCKS_PER_SEC<annealing_endTime){
         int ss=rand()%100;
