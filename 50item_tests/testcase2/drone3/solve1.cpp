@@ -25,7 +25,7 @@ using T=tuple<int,int,char,ll,string>;
 #define K 3//num of drone
 #define POP 30000//population size
 #define G 80//number of generations
-#define S 3//tournament size
+#define S 5//tournament size
 
 double pc=0.6;//probability of crossover
 double pm=0.01;//probability of mutation

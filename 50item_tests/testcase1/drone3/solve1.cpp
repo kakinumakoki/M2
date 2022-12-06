@@ -25,7 +25,7 @@ using T=tuple<int,int,char,ll,string>;
 #define K 3//num of drone
 #define POP 30000//population size
 #define G 80//number of generations
-#define S 3//tournament size
+#define S 5//tournament size
 
 double pc=0.6;//probability of crossover
 double pm=0.01;//probability of mutation
@@ -187,6 +187,11 @@ void decide_drone_todeliver_by_LPT(vector<vector<int>>A)
     vector<vector<vector<int>>>x(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q
     for(int i=1;i<Q-1;i++){
         int time[K]={0};
+        vector<P>B;
+        rep(j,A[i].size()){
+            B.push_back({w[A[i][j]][i],A[i][j]});
+        }
+        sort(B.rbegin(),B.rend());
         rep(j,A[i].size()){
             int min_processing_drone=-1,min_processing_time=1e9;
             rep(k,K){
