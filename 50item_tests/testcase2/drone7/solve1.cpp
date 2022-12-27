@@ -342,6 +342,10 @@ void solve_GA()
                     if(seen[i]==0){
                         //cout<<i<<" ";
                         int  rr=rand()%(Q-2)+1;
+                        while(1){
+                            if(rr!=k) break;
+                            else rr=rand()%(Q-2)+1;
+                        }
                         P1[rr].push_back(i);
                     }
                 }
@@ -394,6 +398,10 @@ void solve_GA()
                     if(seen[i]==0){
                         //cout<<i<<" ";
                         int  rr=rand()%(Q-2)+1;
+                        while(1){
+                            if(rr!=k) break;
+                            else rr=rand()%(Q-2)+1;
+                        }
                         P2[rr].push_back(i);
                     }
                 }
@@ -541,7 +549,6 @@ void solve_GA()
         count++;
     }
 }
-
 void last_decide_drone_todeliver_by_LPT_and_score(vector<vector<int>>A,int number)
 {
     vector<vector<vector<int>>>x(K,vector<vector<int>>(Q));//drone[K][Q]:Package delivered by drone K at point Q

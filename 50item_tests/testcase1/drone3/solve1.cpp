@@ -347,6 +347,10 @@ void solve_GA()
                     if(seen[i]==0){
                         //cout<<i<<" ";
                         int  rr=rand()%(Q-2)+1;
+                        while(1){
+                            if(rr!=k) break;
+                            else rr=rand()%(Q-2)+1;
+                        }
                         P1[rr].push_back(i);
                     }
                 }
@@ -399,6 +403,10 @@ void solve_GA()
                     if(seen[i]==0){
                         //cout<<i<<" ";
                         int  rr=rand()%(Q-2)+1;
+                        while(1){
+                            if(rr!=k) break;
+                            else rr=rand()%(Q-2)+1;
+                        }
                         P2[rr].push_back(i);
                     }
                 }

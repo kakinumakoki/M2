@@ -524,7 +524,7 @@ double decide_tmp(vector<vector<int>>A,double Tmp){
     Tmp=(right+left)/2;
     while(1){
         if(solve_counter==loop){
-            if(abs(right-left)<0.01) {
+            if(abs(right-left)<=0.01) {
                 cout<<"decide Tmp = "<<Tmp<<endl;
                 return Tmp;
             }
