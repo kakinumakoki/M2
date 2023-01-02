@@ -1,17 +1,17 @@
 Stop Point 1
-drone 1 :  40 20 22 11 1 cost : 47+27+26+17+8=125
-drone 2 :  41 31 21 0 2  cost : 46+36+26+12+6=126
-drone 3 :  30 32 23 10 3 cost : 37+36+26+19+6=124
+drone 1 :  40 22 10 4 3  cost : 47+26+19+8+6=106
+drone 2 :  30 23 21 0 2  cost : 37+26+26+12+6=107
+drone 3 :  31 20 15 11 1 cost : 36+27+19+17+8=107
 
 Stop Point 2
-drone 1 :  33 15         cost : 36+15=51
-drone 2 :  24 14 4       cost : 26+16+7=49
-drone 3 :  12 13 6 5     cost : 20+17+7+5=49
+drone 1 :  32 13 14      cost : 37+17+16=70
+drone 2 :  34 12 6 5     cost : 36+20+7+5=68
+drone 3 :  24 25 16      cost : 26+25+16=67
 
 Stop Point 3
-drone 1 :  25 7          cost : 27+6=33
-drone 2 :  19 17         cost : 17+16=33
-drone 3 :  16 9 8        cost : 17+8+6=31
+drone 1 :  26 7          cost : 26+6=32
+drone 2 :  19 9 8        cost : 17+8+6=31
+drone 3 :  18 17         cost : 16+16=32
 
 Stop Point 4
 drone 1 :                cost : 0
@@ -29,24 +29,24 @@ drone 2 :                cost : 0
 drone 3 :                cost : 0
 
 Stop Point 7
-drone 1 :  28            cost : 19=19
-drone 2 :  18            cost : 19=19
-drone 3 :  29            cost : 15=15
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
 
 Stop Point 8
-drone 1 :  44 38         cost : 38+19=57
-drone 2 :  46 36         cost : 31+27=58
-drone 3 :  35 26         cost : 31+27=58
+drone 1 :  36 29         cost : 27+15=42
+drone 2 :  37 49         cost : 23+21=44
+drone 3 :  27 28         cost : 23+19=42
 
 Stop Point 9
-drone 1 :  34 39         cost : 35+15=50
-drone 2 :  45 49         cost : 31+15=46
-drone 3 :  27 37         cost : 27+23=50
+drone 1 :  43 38         cost : 39+19=58
+drone 2 :  33 39         cost : 39+15=54
+drone 3 :  35 46         cost : 31+27=58
 
 Stop Point 10
-drone 1 :  42            cost : 42=42
-drone 2 :  43            cost : 38=38
-drone 3 :  47 48         cost : 22+18=40
+drone 1 :  41 48         cost : 46+18=64
+drone 2 :  42 47         cost : 42+22=64
+drone 3 :  44 45         cost : 34+30=64
 
-best score : 379
-time : 120.038
+best score : 375
+time : 1034.73
