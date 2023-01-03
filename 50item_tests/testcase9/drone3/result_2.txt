@@ -1,0 +1,52 @@
+Stop Point 1
+drone 1 :  49 48 47 46 45 44 43 42 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0cost : 0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0=0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 2
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 3
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 4
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 5
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 6
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 7
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 8
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 9
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+Stop Point 10
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+
+best score : 0
+time : 3

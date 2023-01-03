@@ -79,4 +79,4 @@ drone 5 :  29 45         cost : 11+3=14
 drone 6 :  28 26         cost : 8+7=15
 
 best score : 104
-time : 1085.08
+time : 1055.08

@@ -1,0 +1,72 @@
+Stop Point 1
+drone 1 :  13            cost : 10=10
+drone 2 :  30            cost : 9=9
+drone 3 :  27            cost : 8=8
+drone 4 :  21 25         cost : 6+4=10
+drone 5 :  11 2          cost : 6+3=9
+
+Stop Point 2
+drone 1 :  36            cost : 7=7
+drone 2 :  34            cost : 6=6
+drone 3 :  23            cost : 5=5
+drone 4 :  24            cost : 3=3
+drone 5 :  19            cost : 3=3
+
+Stop Point 3
+drone 1 :  47 3          cost : 17+5=22
+drone 2 :  39 28         cost : 17+2=19
+drone 3 :  44 33         cost : 16+5=21
+drone 4 :  16 0          cost : 15+7=22
+drone 5 :  8 17          cost : 11+10=21
+
+Stop Point 4
+drone 1 :  31            cost : 3=3
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 5
+drone 1 :  9             cost : 10=10
+drone 2 :  37            cost : 9=9
+drone 3 :  6             cost : 7=7
+drone 4 :  12 4          cost : 3+2=5
+drone 5 :  1             cost : 3=3
+
+Stop Point 6
+drone 1 :  43            cost : 2=2
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 7
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+Stop Point 8
+drone 1 :  20 45         cost : 14+6=20
+drone 2 :  42 26         cost : 13+8=21
+drone 3 :  22 5          cost : 13+8=21
+drone 4 :  49 14         cost : 11+9=20
+drone 5 :  46 38 15      cost : 10+9+2=21
+
+Stop Point 9
+drone 1 :  32            cost : 19=19
+drone 2 :  40            cost : 18=18
+drone 3 :  10 35         cost : 15+4=19
+drone 4 :  41 7          cost : 13+5=18
+drone 5 :  29 18         cost : 9+7=16
+
+Stop Point 10
+drone 1 :  48            cost : 1=1
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+
+best score : 95
+time : 3.002

@@ -89,4 +89,4 @@ drone 6 :                cost : 0
 drone 7 :                cost : 0
 
 best score : 111
-time : 1093.32
+time : 1053.32
