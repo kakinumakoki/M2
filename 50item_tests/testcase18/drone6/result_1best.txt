@@ -1,10 +1,10 @@
 Stop Point 1
-drone 1 :  24            cost : 13=13
-drone 2 :  23            cost : 12=12
-drone 3 :  36 2          cost : 10+3=13
-drone 4 :  13            cost : 10=10
-drone 5 :  27 25         cost : 8+4=12
-drone 6 :  21 11         cost : 6+6=12
+drone 1 :                cost : 0
+drone 2 :                cost : 0
+drone 3 :                cost : 0
+drone 4 :                cost : 0
+drone 5 :                cost : 0
+drone 6 :                cost : 0
 
 Stop Point 2
 drone 1 :                cost : 0
@@ -15,38 +15,46 @@ drone 5 :                cost : 0
 drone 6 :                cost : 0
 
 Stop Point 3
-drone 1 :  47            cost : 17=17
-drone 2 :  39            cost : 17=17
-drone 3 :  44            cost : 16=16
-drone 4 :  16 28         cost : 15+2=17
-drone 5 :  34 3          cost : 12+5=17
-drone 6 :  17 0          cost : 10+7=17
+drone 1 :  45            cost : 15=15
+drone 2 :  31            cost : 15=15
+drone 3 :  6             cost : 15=15
+drone 4 :  28            cost : 14=14
+drone 5 :  43 38         cost : 11+4=15
+drone 6 :  15 12         cost : 9+6=15
 
 Stop Point 4
-drone 1 :                cost : 0
-drone 2 :                cost : 0
-drone 3 :                cost : 0
-drone 4 :                cost : 0
-drone 5 :                cost : 0
-drone 6 :                cost : 0
+drone 1 :  2             cost : 19=19
+drone 2 :  39            cost : 17=17
+drone 3 :  41 27         cost : 14+3=17
+drone 4 :  35 18         cost : 14+3=17
+drone 5 :  0 20          cost : 12+6=18
+drone 6 :  42 26         cost : 11+8=19
 
 Stop Point 5
-drone 1 :  12            cost : 3=3
-drone 2 :  1             cost : 3=3
-drone 3 :  4             cost : 2=2
-drone 4 :                cost : 0
-drone 5 :                cost : 0
-drone 6 :                cost : 0
+drone 1 :  44            cost : 23=23
+drone 2 :  46            cost : 21=21
+drone 3 :  10            cost : 18=18
+drone 4 :  40            cost : 16=16
+drone 5 :  21 9          cost : 15+4=19
+drone 6 :  24 47         cost : 11+6=17
 
 Stop Point 6
-drone 1 :  19            cost : 19=19
-drone 2 :  6             cost : 19=19
-drone 3 :  37            cost : 17=17
-drone 4 :  31            cost : 14=14
-drone 5 :  49 9          cost : 10+5=15
-drone 6 :  33 43         cost : 10+2=12
+drone 1 :  4             cost : 15=15
+drone 2 :  36            cost : 13=13
+drone 3 :  32            cost : 13=13
+drone 4 :  33            cost : 12=12
+drone 5 :  30 25         cost : 11+4=15
+drone 6 :  3 48          cost : 9+6=15
 
 Stop Point 7
+drone 1 :  29            cost : 7=7
+drone 2 :  17            cost : 7=7
+drone 3 :  19            cost : 6=6
+drone 4 :  13            cost : 6=6
+drone 5 :  14            cost : 5=5
+drone 6 :  34            cost : 4=4
+
+Stop Point 8
 drone 1 :                cost : 0
 drone 2 :                cost : 0
 drone 3 :                cost : 0
@@ -54,29 +62,21 @@ drone 4 :                cost : 0
 drone 5 :                cost : 0
 drone 6 :                cost : 0
 
-Stop Point 8
-drone 1 :  20            cost : 14=14
-drone 2 :  42 15         cost : 13+2=15
-drone 3 :  30 5          cost : 11+8=19
-drone 4 :  8 45          cost : 11+6=17
-drone 5 :  46 26         cost : 10+8=18
-drone 6 :  38 14         cost : 9+9=18
-
 Stop Point 9
-drone 1 :  32            cost : 19=19
-drone 2 :  40            cost : 18=18
-drone 3 :  22            cost : 18=18
-drone 4 :  10 35         cost : 15+4=19
-drone 5 :  41 7          cost : 13+5=18
-drone 6 :  29 18         cost : 9+7=16
+drone 1 :  22 37         cost : 15+4=19
+drone 2 :  7             cost : 15=15
+drone 3 :  1             cost : 15=15
+drone 4 :  16 5          cost : 12+5=17
+drone 5 :  49 8          cost : 10+5=15
+drone 6 :  23 11         cost : 9+8=17
 
 Stop Point 10
-drone 1 :  48            cost : 1=1
+drone 1 :                cost : 0
 drone 2 :                cost : 0
 drone 3 :                cost : 0
 drone 4 :                cost : 0
 drone 5 :                cost : 0
 drone 6 :                cost : 0
 
-best score : 91
-time : 1089.49
+best score : 98
+time : 1060.2
