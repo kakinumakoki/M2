@@ -1,0 +1,194 @@
+Stop Point 0 Score: 0.00
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 40    cost: = 0.00
+drone 1: 17    cost: = 0.00
+drone 2: 28    cost: = 0.00
+drone 3:    cost: = 0.00
+-------------------------------------
+next drone late?
+truck : 4.5
+drone 0: 17.8102-4.5-0=13.3102
+drone 1: 16.8353-4.5-0=12.3353
+drone 2: 14.375-4.5-0=9.87496
+drone 3:
+
+
+Stop Point 1 Score: 13.31
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 24    cost:late cost(13.31)  = 13.31
+drone 1: 3    cost:late cost(12.34)  = 12.34
+drone 2: 31    cost:late cost(9.87)  = 9.87
+drone 3: 27    cost: = 0.00
+-------------------------------------
+next drone late?
+truck : 32.7605
+drone 0: 21.8421-32.7605-0=-10.9184
+drone 1: 21.8857-32.7605-0.974932=-11.8498
+drone 2: 24.653-32.7605-3.43529=-11.5428
+drone 3: 36.8701-32.7605-13.3102=-9.20066
+
+
+Stop Point 2 Score: 0.00
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 23    cost: = 0.00
+drone 1:    cost: = 0.00
+drone 2:    cost: = 0.00
+drone 3:    cost: = 0.00
+-------------------------------------
+next drone late?
+truck : 10.0623
+drone 0: 9.30714-10.0623-0=-0.75517
+drone 1:
+drone 2:
+drone 3:
+
+
+Stop Point 3 Score: 0.00
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 11    cost: = 0.00
+drone 1: 46    cost: = 0.00
+drone 2: 22    cost: = 0.00
+drone 3:    cost: = 0.00
+-------------------------------------
+next drone late?
+truck : 11.7154
+drone 0: 26.4769-11.7154-0=14.7615
+drone 1: 15.198-11.7154-0=3.48266
+drone 2: 8.7082-11.7154-0=-3.00717
+drone 3:
+
+
+Stop Point 4 Score: 14.76
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 16    cost:late cost(14.76)  = 14.76
+drone 1: 6    cost:late cost(3.48)  = 3.48
+drone 2: 47 45    cost:11.66  = 11.66
+drone 3: 43    cost: = 0.00
+-------------------------------------
+next drone late?
+truck : 18.9737
+drone 0: 18.898-18.9737-0=-0.0757106
+drone 1: 34.4424-18.9737-11.2788=4.18995
+drone 2: 21.9825-18.9737-3.09958=-0.0907064
+drone 3: 41.1994-18.9737-14.7615=7.46424
+
+
+Stop Point 5 Score: 7.46
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 29    cost: = 0.00
+drone 1: 34    cost:late cost(4.19)  = 4.19
+drone 2: 8    cost: = 0.00
+drone 3: 19    cost:late cost(7.46)  = 7.46
+-------------------------------------
+next drone late?
+truck : 5.40833
+drone 0: 20.4018-5.40833-7.46424=7.52918
+drone 1: 9.32456-5.40833-3.2743=0.641931
+drone 2: 15.5696-5.40833-7.46424=2.69702
+drone 3: 9.24504-5.40833-0=3.83671
+
+
+Stop Point 6 Score: 7.53
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 10    cost:late cost(7.53)  = 7.53
+drone 1: 5    cost:late cost(0.64)  = 0.64
+drone 2: 39    cost:late cost(2.70)  = 2.70
+drone 3: 14    cost:late cost(3.84)  = 3.84
+-------------------------------------
+next drone late?
+truck : 17.557
+drone 0: 18.5453-17.557-0=0.988261
+drone 1: 24.8811-17.557-6.88725=0.436843 
+drone 2: 21.4364-17.557-4.83216=-0.952788
+drone 3: 20.2357-17.557-3.69247=-1.0138
+
+
+Stop Point 7 Score: 4.47
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 33    cost:late cost(0.99)  = 0.99
+drone 1: 1    cost:late cost(0.44)  = 0.44
+drone 2: 37 2    cost:4.47  = 4.47
+drone 3: 25    cost: = 0.00
+-------------------------------------
+next drone late?
+truck : 30.1869
+drone 0: 33.3027-30.1869-3.48388=-0.368059
+drone 1: 35.0375-30.1869-4.03529=0.815313
+drone 2: 31.632-30.1869-0=1.44509
+drone 3: 37.7843-30.1869-4.47214=3.12521
+
+
+Stop Point 8 Score: 11.66
+pattern 1
+-------------------------------------
+item number&cost
+drone 0: 38 4    cost:11.66  = 11.66
+drone 1: 48 12    cost:late cost(0.82) 7.21  = 8.03
+drone 2: 41 35    cost:late cost(1.45) 4.47  = 5.92
+drone 3: 18 30    cost:late cost(3.13) 4.47  = 7.60
+-------------------------------------
+next drone late?
+truck : 21.0535
+drone 0: 17.8102-21.0535-0=-3.24325
+drone 1: 34.8583-21.0535-3.63549=10.1693
+drone 2: 37.7602-21.0535-5.74467=10.962
+drone 3: 27.6806-21.0535-4.06455=2.56252
+
+
+Stop Point 9 Score: 10.96
+pattern 0
+-------------------------------------
+item number&cost
+drone 0: 32 36    cost:7.21  = 7.21
+drone 1: 7    cost:late cost(10.17)  = 10.17
+drone 2: 44    cost:late cost(10.96)  = 10.96
+drone 3: 20    cost:late cost(2.56)  = 2.56
+-------------------------------------
+next drone late?
+truck : 17.557
+drone 0: 29.3454-17.557-3.75088=8.03748
+drone 1: 19.5145-17.557-0.792692=1.16471
+drone 2: 19.4722-17.557-0=1.9151
+drone 3: 34.7541-17.557-8.39947=8.79757
+
+
+Stop Point 10 Score: 32.51
+pattern 1
+-------------------------------------
+item number&cost
+drone 0: 0 9    cost:late cost(8.04) 24.17  = 32.20
+drone 1: 21 49    cost:late cost(1.16) 31.11  = 32.28
+drone 2: 26 13    cost:late cost(1.92) 30.59  = 32.51
+drone 3: 42 15    cost:late cost(8.80) 20.88  = 29.68
+-------------------------------------
+next drone late?
+truck : 32.7605
+drone 0: 29.2791-32.7605-0.305645=-3.78701
+drone 1: 25.3246-32.7605-0.231812=-7.66775
+drone 2: 32.7546-32.7605-0=-0.00588193
+drone 3: 22.6321-32.7605-2.83104=-12.9594
+
+last destination
+drone 0 Not late
+drone 1 Not late
+drone 2 Not late
+drone 3 Not late
+
+score : 102.67
+time : 601.247
