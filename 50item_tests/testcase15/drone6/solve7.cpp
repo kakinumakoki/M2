@@ -34,6 +34,7 @@ using P_D=pair<double,int>;
 
 double greedy_score;
 double now_score;//今のスコア
+double best_score;
 double real_best_score;//全探索の中で最良スコア
 
 struct Point{
@@ -47,6 +48,7 @@ double dist_by_truck[Q][Q];//出発デポ最終デポを含む停止ポイント
 vector<vector<int>>greedy_solution_where_todeliver(Q);//現在の解のどの停止ポイントでどの顧客を届けるかの集合
 vector<vector<int>>solution_where_todeliver(Q);//現在の解のどの停止ポイントでどの顧客を届けるかの集合
 vector<vector<int>>best_solution_where_todeliver(Q);//全探索の中で最良解のどの停止ポイントでどの顧客を届けるかの集合
+vector<vector<int>>real_best_solution_where_todeliver(Q);//全探索の中で最良解のどの停止ポイントでどの顧客を届けるかの集合
 vector<vector<vector<int>>>X(K,vector<vector<int>>(Q));//出力用のどの停止ポイントでどのドローンがどの顧客を届けるかを決定した集合
 long start,finish;//探索用のタイマー
 long time_start,time_finish;//プログラム全体のタイマー
@@ -291,6 +293,8 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
 //--------------------------------出力------------------------------------------
         printf("Stop Point %d Score: %.2f\n",i,best_cost);
         cout<<"pattern "<<which<<endl;
+        cout<<"-------------------------------------"<<endl;
+        cout<<"item number&cost"<<endl;
         rep(j,K){
             cout<<"drone "<<j<<": ";
             rep(k,x[j][i].size()){
@@ -298,7 +302,7 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
                 X[j][i].push_back(x[j][i][k]);
             }
             if(fly_next_Point[j][i]) {
-                cout<<"go next stop point   ";
+               // cout<<"go next stop point   ";
                 X[j][i+1].push_back(x[j][i][x[j][i].size()-1]);//次の停止ポイントに行くなら描画のため追加
             }
             X[j][i].push_back(-1);//-------------------finish = -1
@@ -312,19 +316,23 @@ void decide_drone_todeliver_by_LPT_test(vector<vector<int>>A)
             }
             printf(" = %.2f\n",time[j]);
         }
+        cout<<"-------------------------------------"<<endl;
+        cout<<"next drone late?"<<endl;
         cout<<"truck : "<<dist_by_truck[i][i+1]<<endl;
         rep(j,K){
-            cout<<"drone "<<j<<": ";
+            cout<<"drone "<<j<<": ";//<<dist_by_truck[i][i+1]-(best_cost-time[j]);
             rep(k,x[j][i].size()){
                 if(k!=x[j][i].size()-1){
-                    cout<<w[x[j][i][k]][i]<<" ";
+                    //cout<<w[x[j][i][k]][i]<<" ";
+                    continue;
                 }
                 else{
-                    if(fly_next_Point[j][i]) cout<<"next: "<<w[x[j][i][k]][i]/2+w[x[j][i][k]][i+1]/2<<" ";
+                    if(fly_next_Point[j][i]) cout<<w[x[j][i][k]][i]/2+w[x[j][i][k]][i+1]/2<<"-"<<dist_by_truck[i][i+1]<<"-"<<(best_cost-time[j])<<"="<<w[x[j][i][k]][i]/2+w[x[j][i][k]][i+1]/2-dist_by_truck[i][i+1]-(best_cost-time[j])<<" ";
                     else cout<<w[x[j][i][k]][i];
                 }
             }
-            cout<<"||"<<late_drone[j][i]<<endl;
+            //cout<<"||"<<late_drone[j][i]<<endl;
+            cout<<endl;
         }
 
         cout<<endl;
@@ -457,7 +465,7 @@ void annealing_insert_search(vector<vector<int>>A)
             if((double)(annealing_nowTime-start)/CLOCKS_PER_SEC-annealing_counter>annealing_show){
                 processing_result.push_back({(double)(annealing_nowTime-start)/CLOCKS_PER_SEC,copy_score});
                 annealing_counter+=annealing_show;
-                cout<<copy_score<<endl;
+                //cout<<copy_score<<endl;
             }
             rep(i,Q){
                 solution_where_todeliver[i].clear();
@@ -505,7 +513,7 @@ void annealing_swap_search(vector<vector<int>>A)
             if((double)(annealing_nowTime-start)/CLOCKS_PER_SEC-annealing_counter>annealing_show){
                 processing_result.push_back({(double)(annealing_nowTime-start)/CLOCKS_PER_SEC,copy_score});
                 annealing_counter+=annealing_show;
-                cout<<copy_score<<endl;
+                //cout<<copy_score<<endl;
             }
             now_score=copy_score;
             rep(i,Q){
@@ -525,7 +533,7 @@ double decide_tmp(vector<vector<int>>A,double Tmp){
     while(1){
         if(solve_counter==loop){
             if(abs(right-left)<0.01) {
-                cout<<"decide Tmp = "<<Tmp<<endl;
+               // cout<<"decide Tmp = "<<Tmp<<endl;
                 return Tmp;
             }
             else if((double)update_num/loop-p<0){
@@ -673,6 +681,27 @@ void output_txt()
     outputfile<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC;
 }
 
+void reset()
+{
+    now_score=greedy_score;
+    rep(i,Q-1){
+        solution_where_todeliver[i].clear();
+        rep(j,greedy_solution_where_todeliver[i].size()){
+            solution_where_todeliver[i].push_back(greedy_solution_where_todeliver[i][j]);
+        }
+    }
+    if(best_score<real_best_score){
+        real_best_score=best_score;
+        rep(i,Q-1){
+            real_best_solution_where_todeliver[i].clear();
+            rep(j,best_solution_where_todeliver[i].size()){
+                real_best_solution_where_todeliver[i].push_back(best_solution_where_todeliver[i][j]);
+            }
+        }
+    }
+    best_score=greedy_score;
+}
+
 int main()
 {
     srand((unsigned int)time(NULL));
@@ -688,54 +717,59 @@ int main()
             greedy_solution_where_todeliver[i].push_back(solution_where_todeliver[i][j]);
         }
     }
-    cout<<greedy_score<<endl;
+    //cout<<greedy_score<<endl;
     now_score=greedy_score;
+    best_score=greedy_score;
     real_best_score=greedy_score;
-    processing_result.push_back({0,greedy_score});
-    nowTemp=decide_tmp(greedy_solution_where_todeliver,greedy_score);
-    start=clock();
-    long timer=clock();
-    annealing_finish_counter=0;
-    while((double)(finish-start)/CLOCKS_PER_SEC<annealing_endTime){
-        annealing_finish_counter++;
-        int ss=rand()%100;
-        if(ss<40) annealing_swap_search(solution_where_todeliver);
-        else annealing_insert_search(solution_where_todeliver);
-        if(now_score<real_best_score) {
-            real_best_score=now_score;
-            rep(i,Q){
-                best_solution_where_todeliver[i].clear();
-                rep(j,solution_where_todeliver[i].size()){
-                    best_solution_where_todeliver[i].push_back(solution_where_todeliver[i][j]);
+    for(int loop=0;loop<10;loop++){
+        nowTemp=decide_tmp(greedy_solution_where_todeliver,greedy_score);
+        start=clock();
+        long timer=clock();
+        annealing_finish_counter=0;
+        while((double)(finish-start)/CLOCKS_PER_SEC<annealing_endTime){
+            annealing_finish_counter++;
+            int ss=rand()%100;
+            if(ss<40) annealing_swap_search(solution_where_todeliver);
+            else annealing_insert_search(solution_where_todeliver);
+            if(now_score<best_score) {
+                //cout<<now_score<<endl;
+                best_score=now_score;
+                rep(i,Q){
+                    best_solution_where_todeliver[i].clear();
+                    rep(j,solution_where_todeliver[i].size()){
+                        best_solution_where_todeliver[i].push_back(solution_where_todeliver[i][j]);
+                    }
                 }
             }
-        }
-        finish=clock();
-        if((double)(finish-timer)/CLOCKS_PER_SEC>1){
-            nowTemp=nowTemp*0.95;
-            cout<<"!!!!!!!!!!!!!!!!!"<<nowTemp<<"!!!!!!!!!!!!!!!!!!!"<<endl;
-            timer=clock();
-        }
-        if(annealing_finish_counter>10000){
-            cout<<"reset ";
-            annealing_finish_counter=0;
-            nowTemp=decide_tmp(greedy_solution_where_todeliver,greedy_score);
-            rep(i,Q){
-                solution_where_todeliver[i].clear();
-                rep(j,greedy_solution_where_todeliver[i].size()){
-                    solution_where_todeliver[i].push_back(greedy_solution_where_todeliver[i][j]);
-                }
+            finish=clock();
+            if((double)(finish-timer)/CLOCKS_PER_SEC>1){
+                nowTemp=nowTemp*0.95;
+                //cout<<"!!!!!!!!!!!!!!!!!"<<nowTemp<<"!!!!!!!!!!!!!!!!!!!"<<endl;
+                timer=clock();
             }
-            now_score=greedy_score;
+            if(annealing_finish_counter>10000){
+                //cout<<"reset ";
+                annealing_finish_counter=0;
+                nowTemp=decide_tmp(greedy_solution_where_todeliver,greedy_score);
+                rep(i,Q){
+                    solution_where_todeliver[i].clear();
+                    rep(j,greedy_solution_where_todeliver[i].size()){
+                        solution_where_todeliver[i].push_back(greedy_solution_where_todeliver[i][j]);
+                    }
+                }
+                now_score=greedy_score;
+            }
         }
+        cout<<"loop "<<loop<<": best score "<<best_score<<endl;
+        cout<<"----------------------------------------------"<<endl;
+        reset();
     }
     time_finish=clock();
-    decide_drone_todeliver_by_LPT_test(best_solution_where_todeliver);
+    decide_drone_todeliver_by_LPT_test(real_best_solution_where_todeliver);
     cout<<"score : "<<real_best_score<<endl;
     cout<<"time : "<<(double)(time_finish-time_start)/CLOCKS_PER_SEC<<endl;
     output_txt();
     output_customer_place();
-    output_annealing_result();
+    //output_annealing_result();
     output_answer(X);
-    cout<<annealing_finish_counter<<endl;
 }
